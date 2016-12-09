@@ -1,0 +1,9 @@
+<h1>Meetup Events for Outdoor &</h1>
+<table>
+  <% @events.each do |event| %>
+      <tr>
+        <td><%= event['id'] %><td>
+        <td><%= event['name'] %><td>
+      </tr>
+  <% end %>
+</table>
