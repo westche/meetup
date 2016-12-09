@@ -1,6 +1,13 @@
 
+<%= simple_form_for :filter_options do |f| %>
+    <%= f.error_messages %>
+    <%= f.input :zipcode %>
+    <%= f.input :radius %>
+    <%= f.button :submit %>
+<% end %>
+
 <h1>Meetup Events for Fitness</h1>
-<table>
+<table class="table">
   <% @fitness_events.each do |event| %>
       <tr>
         <td><%= event['id'] %><td>
@@ -10,7 +17,7 @@
 </table>
 
 <h1>Meetup Events for Outdoors & Adventure</h1>
-<table>
+<table class="table">
   <% @outdoor_events.each do |event| %>
       <tr>
         <td><%= event['id'] %><td>
@@ -20,7 +27,7 @@
 </table>
 
 <h1>Meetup Events for Sports & Recreation</h1>
-<table>
+<table class="table">
   <% @sports_events.each do |event| %>
       <tr>
         <td><%= event['id'] %><td>
