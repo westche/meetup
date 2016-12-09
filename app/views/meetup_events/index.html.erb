@@ -1,5 +1,9 @@
+<div>
+
+</div>
 <h1>Categories</h1>
-<table>
+<table class="table table-striped">
+
     <% @categories.each do |category| %>
         <tr>
           <td><%= category['id'] %><td>
@@ -8,4 +12,4 @@
         </tr>
     <% end %>
 </table>
-<%= link_to "List Events for ", meetup_events_list_path, class: "btn btn-home"  %>
+<%= link_to "List Events for Fitness, Outdoors & Adventure, Sports & Recreation", meetup_events_list_path, class: "btn btn-info"  %>

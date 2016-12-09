@@ -1,6 +1,27 @@
-<h1>Meetup Events for Outdoor &</h1>
+
+<h1>Meetup Events for Fitness</h1>
 <table>
-  <% @events.each do |event| %>
+  <% @fitness_events.each do |event| %>
+      <tr>
+        <td><%= event['id'] %><td>
+        <td><%= event['name'] %><td>
+      </tr>
+  <% end %>
+</table>
+
+<h1>Meetup Events for Outdoors & Adventure</h1>
+<table>
+  <% @outdoor_events.each do |event| %>
+      <tr>
+        <td><%= event['id'] %><td>
+        <td><%= event['name'] %><td>
+      </tr>
+  <% end %>
+</table>
+
+<h1>Meetup Events for Sports & Recreation</h1>
+<table>
+  <% @sports_events.each do |event| %>
       <tr>
         <td><%= event['id'] %><td>
         <td><%= event['name'] %><td>
