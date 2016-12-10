@@ -6,16 +6,19 @@ class MeetupEventsController < ApplicationController
   end
 
   def list
-    zipcode = params[:filter_options][:zipcode]
-    radius = params[:filter_options][:radius]
+    # zipcode = params[:filter_options][:zipcode]
+    # radius = params[:filter_options][:radius]
+
+    zipcode = 0
+    radius = 50
 
     meetup_api = MeetupApi.new
     params = {
         category: '9',
         format: 'json',
         page: '30',
-        radius: zipcode,
-        zip: radius
+        radius: radius,
+        zip: zipcode
     }
     fitness_events = meetup_api.open_events(params)
     @fitness_events = fitness_events['results']
@@ -24,8 +27,8 @@ class MeetupEventsController < ApplicationController
         category: '23',
         format: 'json',
         page: '30',
-        radius: zipcode,
-        zip: radius
+        radius: radius,
+        zip: zipcode
     }
     outdoor_events = meetup_api.open_events(params)
     @outdoor_events = outdoor_events['results']
@@ -34,8 +37,8 @@ class MeetupEventsController < ApplicationController
         category: '32',
         format: 'json',
         page: '30',
-        radius: zipcode,
-        zip: radius
+        radius: radius,
+        zip: zipcode
     }
     sports_events = meetup_api.open_events(params)
     @sports_events = sports_events['results']
