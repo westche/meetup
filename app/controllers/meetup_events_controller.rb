@@ -6,11 +6,12 @@ class MeetupEventsController < ApplicationController
   end
 
   def list
-    # zipcode = params[:filter_options][:zipcode]
-    # radius = params[:filter_options][:radius]
-
     zipcode = 0
     radius = 50
+    if params[:filter_options].present?
+      zipcode = params[:filter_options][:zipcode]
+      radius = params[:filter_options][:radius]
+    end
 
     meetup_api = MeetupApi.new
     params = {
