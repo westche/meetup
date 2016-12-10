@@ -1,37 +1,76 @@
-
-<%= simple_form_for :filter_options do |f| %>
-    <%= f.error_messages %>
-    <%= f.input :zipcode %>
-    <%= f.input :radius %>
-    <%= f.button :submit %>
+<h1>Search</h1>
+<%= simple_form_for :filter_options, html: { class: "form-inline" } do |f| %>
+    <div class="form-group">
+      <%= f.label :zipcode %>
+      <%= f.input_field :zipcode, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :radius %>
+      <%= f.input_field :radius, class: "form-control" %>
+    </div>
+    <%= f.button :submit, "Search" %>
 <% end %>
 
-<h1>Meetup Events for Fitness</h1>
+<h3>Meetup Events for Fitness</h3>
 <table class="table">
-  <% @fitness_events.each do |event| %>
-      <tr>
-        <td><%= event['id'] %><td>
-        <td><%= event['name'] %><td>
-      </tr>
-  <% end %>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th></th>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @fitness_events.each do |event| %>
+          <tr>
+            <td><%= event['id'] %><td>
+            <td><%= event['name'] %><td>
+          </tr>
+      <% end %>
+  </tbody>
 </table>
 
-<h1>Meetup Events for Outdoors & Adventure</h1>
+<div class="clearfix"></div>
+
+<h3>Meetup Events for Outdoors & Adventure</h3>
 <table class="table">
-  <% @outdoor_events.each do |event| %>
+  <thead>
       <tr>
-        <td><%= event['id'] %><td>
-        <td><%= event['name'] %><td>
+        <th>Id</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
       </tr>
-  <% end %>
+  </thead>
+  <tbody>
+      <% @outdoor_events.each do |event| %>
+          <tr>
+            <td><%= event['id'] %><td>
+            <td><%= event['name'] %><td>
+          </tr>
+      <% end %>
+  </tbody>
 </table>
 
-<h1>Meetup Events for Sports & Recreation</h1>
+<div class="clearfix"></div>
+
+<h3>Meetup Events for Sports & Recreation</h3>
 <table class="table">
-  <% @sports_events.each do |event| %>
+  <thead>
       <tr>
-        <td><%= event['id'] %><td>
-        <td><%= event['name'] %><td>
+        <th>Id</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
       </tr>
-  <% end %>
+  </thead>
+  <tbody>
+      <% @sports_events.each do |event| %>
+          <tr>
+            <td><%= event['id'] %><td>
+            <td><%= event['name'] %><td>
+          </tr>
+      <% end %>
+  </tbody>
 </table>
