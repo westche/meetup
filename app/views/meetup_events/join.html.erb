@@ -1,0 +1,33 @@
+<% @detail_event.each do |event| %>
+    <h3><%= event['name'] %></h3>
+    <div class="clearfix"></div>
+
+    <table class="table table-bordered">
+      <thead>
+          <tr>
+            <th>Venue name</th>
+            <th>Venue country</th>
+            <th>Venue city</th>
+            <th>Venue address</th>
+            <th>Venue state</th>
+            <th>Event time</th>
+            <th>Group name</th>
+            <th>Group Join Mode</th>
+            <th>Group Members</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td><%= event['venue']['name'] %></td>
+            <td><%= event['venue']['country'] %></td>
+            <td><%= event['venue']['city'] %></td>
+            <td><%= event['venue']['address_1'] %></td>
+            <td><%= event['venue']['state'] %></td>
+            <td><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></td>
+            <td><%= event['group']['name'] %></td>
+            <td><%= event['group']['join_mode'] %></td>
+            <td><%= event['group']['who'] %></td>
+          </tr>
+      </tbody>
+    </table>
+<% end %>

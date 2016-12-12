@@ -26,7 +26,7 @@
       <tr>
         <td><%= event['name'] %><td>
         <td><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %><td>
-        <%= link_to "Join to event", {controller: "meetup_events", action: "join"}, class: "btn btn-success" %>
+        <%= link_to "Join to event", join_event_path(event['id']), class: "btn btn-success" %>
       </tr>
   <% end %>
   </tbody>
@@ -49,7 +49,7 @@
       <tr>
         <td><%= event['name'] %><td>
         <td><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %><td>
-        <a href="/" class="btn btn-success">Join to Event</a>
+        <%= link_to "Join to event", join_event_path(event['id']), class: "btn btn-success" %>
       </tr>
   <% end %>
   </tbody>
@@ -72,7 +72,7 @@
       <tr>
         <td><%= event['name'] %><td>
         <td><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %><td>
-        <a href="/" class="btn btn-success">Join to Event</a>
+        <%= link_to "Join to event", join_event_path(event['id']), class: "btn btn-success" %>
       </tr>
   <% end %>
   </tbody>

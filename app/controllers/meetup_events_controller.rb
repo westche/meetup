@@ -80,13 +80,36 @@ class MeetupEventsController < ApplicationController
     }
     sports_events = meetup_api.open_events(params)
     @sports_events = sports_events['results']
-  end
 
-  def join
     params = {
-        category: '32',
+        category_id: '9',
         format: 'json',
         page: '30'
     }
+    groups = meetup_api.groups(params)
+    @groups = groups['results']
+  end
+
+  # meetup_events/join/:id
+  def join
+    # params = {
+    #     category: '32',
+    #     format: 'json',
+    #     page: '30'
+    # }
+    # redirect_to "https://secure.meetup.com/oauth2/authorize?client_id=#{MeetupClient.config.api_key}&response_type=code&redirect_uri=#{meetup_events_join_callback_url}"
+    meetup_api = MeetupApi.new
+    puts params[:id]
+    p = {
+        event_id: params[:id],
+        format: 'json',
+        page: '30'
+    }
+    detail_event = meetup_api.events(p)
+    @detail_event = detail_event['results']
+  end
+
+  def join_callback
+
   end
 end
