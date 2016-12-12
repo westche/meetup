@@ -1,15 +1,79 @@
-<div>
+<h1>Search</h1>
+<%= simple_form_for :filter_options, html: { class: "form-inline" } do |f| %>
+    <div class="form-group">
+      <%= f.label :zipcode %>
+      <%= f.input_field :zipcode, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :radius %>
+      <%= f.input_field :radius, class: "form-control" %>
+    </div>
+    <%= f.button :submit, "Search" %>
+<% end %>
 
-</div>
-<h1>Categories</h1>
-<table class="table table-striped">
-
-    <% @categories.each do |category| %>
-        <tr>
-          <td><%= category['id'] %><td>
-          <td><%= category['name'] %><td>
-          <td><%= category['short_name'] %><td>
-        </tr>
-    <% end %>
+<h3>Meetup Events for Fitness</h3>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th>Time</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @fitness_events.each do |event| %>
+      <tr>
+        <td><%= event['name'] %><td>
+        <td><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %><td>
+        <%= link_to "Join to event", {controller: "meetup_events", action: "join"}, class: "btn btn-success" %>
+      </tr>
+  <% end %>
+  </tbody>
 </table>
-<%= link_to "List Events for Fitness, Outdoors & Adventure, Sports & Recreation", meetup_events_list_path, class: "btn btn-info"  %>
+
+<div class="clearfix"></div>
+
+<h3>Meetup Events for Outdoors & Adventure</h3>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th></th>
+    <th>Name</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @outdoor_events.each do |event| %>
+      <tr>
+        <td><%= event['name'] %><td>
+        <td><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %><td>
+        <a href="/" class="btn btn-success">Join to Event</a>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<div class="clearfix"></div>
+
+<h3>Meetup Events for Sports & Recreation</h3>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th></th>
+    <th>Name</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @sports_events.each do |event| %>
+      <tr>
+        <td><%= event['name'] %><td>
+        <td><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %><td>
+        <a href="/" class="btn btn-success">Join to Event</a>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
