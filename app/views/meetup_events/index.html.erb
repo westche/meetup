@@ -17,8 +17,9 @@
   <div class="event-container">
     <% @fitness_events.each do |fitness_event| %>
         <ul class="event-list-container">
-          <li class="row event-listing clearfix doc-padding" onclick="join_to_event(fitness_event)">
-            <p class="event-time"><%= Time.at(fitness_event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></p>
+          <li class="row event-listing clearfix doc-padding">
+            <span class="event-time"><%= Time.at(fitness_event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
+            <%= link_to "Join to event", {:controller => "meetup_events", :action => "join", :event => fitness_event }, class: "btn btn-success" %>
             <p class="event-name"><%= fitness_event['name'] %></p>
             <div class="col-sm-6">
               <% if fitness_event['venue'] %>
@@ -51,7 +52,8 @@
     <% @outdoor_events.each do |event| %>
         <ul class="event-list-container">
           <li class="row event-listing clearfix doc-padding">
-            <p class="event-time"><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></p>
+            <span class="event-time"><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
+            <%= link_to "Join to event", {:controller => "meetup_events", :action => "join", :event => event }, class: "btn btn-success" %>
             <p class="event-name"><%= event['name'] %></p>
             <div class="col-sm-6">
               <% if event['venue'] %>
@@ -84,7 +86,8 @@
     <% @sports_events.each do |event| %>
         <ul class="event-list-container">
           <li class="row event-listing clearfix doc-padding">
-            <p class="event-time"><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></p>
+            <span class="event-time"><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
+            <%= link_to "Join to event", {:controller => "meetup_events", :action => "join", :event => event }, class: "btn btn-success" %>
             <p class="event-name"><%= event['name'] %></p>
             <div class="col-sm-6">
               <% if event['venue'] %>
@@ -111,7 +114,7 @@
 </div>
 
 <script>
-    function join_to_event(selected_event) {
+    function join_to_event(event, selected_event) {
         document.getElementById("demo").innerHTML = selected_event;
     }
 </script>
