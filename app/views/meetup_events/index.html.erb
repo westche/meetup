@@ -1,5 +1,5 @@
 <div class="background">
-  <%= simple_form_for :filter_options, html: { class: "form-inline search-form" } do |f| %>
+  <%= simple_form_for :filter_options, :url => url_for(:action => 'search', :controller => 'meetup_events'), html: { class: "form-inline search-form" } do |f| %>
       <div class="form-group search-box">
         <%= f.input_field :zipcode, class: 'form-control', placeholder: 'City or Zipcode' %>
       </div>
