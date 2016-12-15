@@ -6,10 +6,12 @@
       <div class="form-group search-box">
         <%= f.input_field :radius, class: 'form-control', placeholder: 'Radius' %>
       </div>
-      <button type="submit" class="btn btn-success">
-        <i class="glyphicon glyphicon-search"></i>
-        <span>Search</span>
-      </button>
+      <div class="form-group search-box">
+        <button type="submit" class="btn btn-success">
+          <i class="glyphicon glyphicon-search"></i>
+          <span>Search</span>
+        </button>
+      </div>
   <% end %>
 </div>
 <div class="content">
@@ -19,26 +21,27 @@
     <% @fitness_events.each do |fitness_event| %>
         <ul class="event-list-container">
           <li class="row event-listing clearfix doc-padding">
-            <span class="event-time"><%= Time.at(fitness_event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
-            <%= link_to "Join to event", {:controller => "meetup_events", :action => "join", :event => fitness_event }, class: "btn btn-success" %>
-            <p class="event-name"><%= fitness_event['name'] %></p>
+            <div>
+              <span class="event-time"><%= Time.at(fitness_event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
+              <%= link_to "Join to event", {:controller => "meetup_events", :action => "join", :event => fitness_event }, class: "join-button btn btn-success" %>
+            </div>            <p class="event-name"><%= fitness_event['name'] %></p>
             <div class="col-sm-6">
               <% if fitness_event['venue'] %>
                   <p class="event-venue">Venue : </p>
-                  <p class="col-sm-3 event-venue-label">Name : </p>
-                  <p class="col-sm-9 event-venue-name"><%= fitness_event['venue']['name'] %></p>
-                  <p class="col-sm-3 event-venue-label">Address : </p>
-                  <p class="col-sm-9 event-venue-address"><%= fitness_event['venue']['address_1'] %>, <%= fitness_event['venue']['city'] %>, <%= fitness_event['venue']['localized_country_name'] %></p>
+                  <p class="col-sm-3 col-xs-3 event-venue-label">Name : </p>
+                  <p class="col-sm-9 col-xs-9 event-venue-name"><%= fitness_event['venue']['name'] %></p>
+                  <p class="col-sm-4 col-xs-4 event-venue-label">Address : </p>
+                  <p class="col-sm-8 col-xs-8 event-venue-address"><%= fitness_event['venue']['address_1'] %>, <%= fitness_event['venue']['city'] %>, <%= fitness_event['venue']['localized_country_name'] %></p>
               <% end %>
             </div>
             <div class="col-sm-6">
               <p class="event-group">Group : </p>
-              <p class="col-sm-3 event-group-label">Name : </p>
-              <p class="col-sm-9 event-group-name"><%= fitness_event['group']['name'] %></p>
-              <p class="col-sm-3 event-group-label">Who : </p>
-              <p class="col-sm-9 event-group-creator"><%= fitness_event['group']['who'] %></p>
-              <p class="col-sm-4 event-group-label">Created Date : </p>
-              <p class="col-sm-8 event-group-date"><%= Time.at(fitness_event['group']['created']/1000).strftime("%B %e, %Y at %I:%M %p") %></p>
+              <p class="col-sm-3 col-xs-3 event-group-label">Name : </p>
+              <p class="col-sm-9 col-xs-9 event-group-name"><%= fitness_event['group']['name'] %></p>
+              <p class="col-sm-3 col-xs-3 event-group-label">Who : </p>
+              <p class="col-sm-9 col-xs-9 event-group-creator"><%= fitness_event['group']['who'] %></p>
+              <p class="col-sm-4 col-xs-4 event-group-label">Created Date : </p>
+              <p class="col-sm-8 col-xs-8 event-group-date"><%= Time.at(fitness_event['group']['created']/1000).strftime("%B %e, %Y at %I:%M %p") %></p>
               <p id="demo"></p>
             </div>
           </li>
@@ -55,29 +58,29 @@
     <% @outdoor_events.each do |event| %>
         <ul class="event-list-container">
           <li class="row event-listing clearfix doc-padding">
-            <span class="event-time"><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
-            <%= link_to "Join to event", {:controller => "meetup_events", :action => "join", :event => event }, class: "btn btn-success" %>
-            <p class="event-name"><%= event['name'] %></p>
+            <div>
+              <span class="event-time"><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
+              <%= link_to "Join to event", {:controller => "meetup_events", :action => "join", :event => event }, class: "join-button btn btn-success" %>
+            </div>            <p class="event-name"><%= event['name'] %></p>
             <div class="col-sm-6">
               <% if event['venue'] %>
                   <p class="event-venue">Venue : </p>
-                  <p class="col-sm-3 event-venue-label">Name : </p>
-                  <p class="col-sm-9 event-venue-name"><%= event['venue']['name'] %></p>
-                  <p class="col-sm-3 event-venue-label">Address : </p>
-                  <p class="col-sm-9 event-venue-address"><%= event['venue']['address_1'] %>, <%= event['venue']['city'] %>, <%= event['venue']['localized_country_name'] %></p>
+                  <p class="col-sm-3 col-xs-3 event-venue-label">Name : </p>
+                  <p class="col-sm-9 col-xs-9 event-venue-name"><%= event['venue']['name'] %></p>
+                  <p class="col-sm-4 col-xs-4 event-venue-label">Address : </p>
+                  <p class="col-sm-8 col-xs-8 event-venue-address"><%= event['venue']['address_1'] %>, <%= event['venue']['city'] %>, <%= event['venue']['localized_country_name'] %></p>
               <% end %>
             </div>
             <div class="col-sm-6">
               <p class="event-group">Group : </p>
-              <p class="col-sm-3 event-group-label">Name : </p>
-              <p class="col-sm-9 event-group-name"><%= event['group']['name'] %></p>
-              <p class="col-sm-3 event-group-label">Who : </p>
-              <p class="col-sm-9 event-group-creator"><%= event['group']['who'] %></p>
-              <p class="col-sm-4 event-group-label">Created Date : </p>
-              <p class="col-sm-8 event-group-date"><%= Time.at(event['group']['created']/1000).strftime("%B %e, %Y at %I:%M %p") %></p>
+              <p class="col-sm-3 col-xs-3 event-group-label">Name : </p>
+              <p class="col-sm-9 col-xs-9 event-group-name"><%= event['group']['name'] %></p>
+              <p class="col-sm-3 col-xs-3 event-group-label">Who : </p>
+              <p class="col-sm-9 col-xs-9 event-group-creator"><%= event['group']['who'] %></p>
+              <p class="col-sm-4 col-xs-4 event-group-label">Created Date : </p>
+              <p class="col-sm-8 col-xs-8 event-group-date"><%= Time.at(event['group']['created']/1000).strftime("%B %e, %Y at %I:%M %p") %></p>
             </div>
           </li>
-
         </ul>
     <% end %>
   </div>
@@ -85,32 +88,34 @@
 
   <div class="clearfix"></div>
 
-  <% if @outdoor_events %>
+  <% if @sports_events %>
   <h2 class="event-header">Meetup Events for Sports & Recreation</h2>
   <div class="event-container">
     <% @sports_events.each do |event| %>
         <ul class="event-list-container">
           <li class="row event-listing clearfix doc-padding">
-            <span class="event-time"><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
-            <%= link_to "Join to event", {:controller => "meetup_events", :action => "join", :event => event }, class: "btn btn-success" %>
+            <div>
+              <span class="event-time"><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
+              <%= link_to "Join to event", {:controller => "meetup_events", :action => "join", :event => event }, class: "join-button btn btn-success" %>
+            </div>
             <p class="event-name"><%= event['name'] %></p>
             <div class="col-sm-6">
               <% if event['venue'] %>
                   <p class="event-venue">Venue : </p>
-                  <p class="col-sm-3 event-venue-label">Name : </p>
-                  <p class="col-sm-9 event-venue-name"><%= event['venue']['name'] %></p>
-                  <p class="col-sm-3 event-venue-label">Address : </p>
-                  <p class="col-sm-9 event-venue-address"><%= event['venue']['address_1'] %>, <%= event['venue']['city'] %>, <%= event['venue']['localized_country_name'] %></p>
+                  <p class="col-sm-3 col-xs-3 event-venue-label">Name : </p>
+                  <p class="col-sm-9 col-xs-9 event-venue-name"><%= event['venue']['name'] %></p>
+                  <p class="col-sm-4 col-xs-4 event-venue-label">Address : </p>
+                  <p class="col-sm-8 col-xs-8 event-venue-address"><%= event['venue']['address_1'] %>, <%= event['venue']['city'] %>, <%= event['venue']['localized_country_name'] %></p>
               <% end %>
             </div>
             <div class="col-sm-6">
               <p class="event-group">Group : </p>
-              <p class="col-sm-3 event-group-label">Name : </p>
-              <p class="col-sm-9 event-group-name"><%= event['group']['name'] %></p>
-              <p class="col-sm-3 event-group-label">Who : </p>
-              <p class="col-sm-9 event-group-creator"><%= event['group']['who'] %></p>
-              <p class="col-sm-4 event-group-label">Created Date : </p>
-              <p class="col-sm-8 event-group-date"><%= Time.at(event['group']['created']/1000).strftime("%B %e, %Y at %I:%M %p") %></p>
+              <p class="col-sm-3 col-xs-3 event-group-label">Name : </p>
+              <p class="col-sm-9 col-xs-9 event-group-name"><%= event['group']['name'] %></p>
+              <p class="col-sm-3 col-xs-3 event-group-label">Who : </p>
+              <p class="col-sm-9 col-xs-9 event-group-creator"><%= event['group']['who'] %></p>
+              <p class="col-sm-4 col-xs-4 event-group-label">Created Date : </p>
+              <p class="col-sm-8 col-xs-8 event-group-date"><%= Time.at(event['group']['created']/1000).strftime("%B %e, %Y at %I:%M %p") %></p>
             </div>
           </li>
         </ul>
