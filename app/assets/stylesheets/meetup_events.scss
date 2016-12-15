@@ -68,9 +68,16 @@
         float: left;
       }
 
+      .event_photo {
+        width: 100%;
+        margin: 20px 0;
+        height: 50%;
+      }
+
       .event-name {
-        font-size: 20px;
+        font-size: 25px;
         text-align: center;
+        margin-top: 20px;
       }
 
       .event-venue, .event-group {
@@ -138,9 +145,16 @@
           float: left;
         }
 
+        .event-photo {
+          width: 100%;
+          margin: 20px 0;
+          height: 50%;
+        }
+
         .event-name {
-          font-size: 20px;
+          font-size: 25px;
           text-align: center;
+          margin-top: 20px;
         }
 
         .event-venue, .event-group {
@@ -216,9 +230,16 @@
           margin: 20px 0;
         }
 
+        .event-photo {
+          width: 100%;
+          margin: 20px 0;
+          height: 50%;
+        }
+
         .event-name {
-          font-size: 20px;
+          font-size: 25px;
           text-align: center;
+          margin-top: 20px;
         }
 
         .event-venue, .event-group {

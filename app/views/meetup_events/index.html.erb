@@ -24,7 +24,13 @@
             <div>
               <span class="event-time"><%= Time.at(fitness_event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
               <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => fitness_event }, class: "join-button btn btn-success" %>
-            </div>            <p class="event-name"><%= fitness_event['name'] %></p>
+            </div>
+            <% if fitness_event['photo'] %>
+                <div class="">
+                  <%= image_tag fitness_event['photo'], :class => "event_photo" %>
+                </div>
+            <% end %>
+            <p class="event-name"><%= fitness_event['name'] %></p>
             <div class="col-sm-6">
               <% if fitness_event['venue'] %>
                   <p class="event-venue">Venue : </p>
@@ -65,7 +71,13 @@
             <div>
               <span class="event-time"><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
               <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => event }, class: "join-button btn btn-success" %>
-            </div>            <p class="event-name"><%= event['name'] %></p>
+            </div>
+            <% if event['photo'] %>
+                <div class="">
+                  <%= image_tag event['photo'], :class => "event_photo" %>
+                </div>
+            <% end %>
+            <p class="event-name"><%= event['name'] %></p>
             <div class="col-sm-6">
               <% if event['venue'] %>
                   <p class="event-venue">Venue : </p>
@@ -106,6 +118,11 @@
               <span class="event-time"><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
               <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => event }, class: "join-button btn btn-success" %>
             </div>
+            <% if event['photo'] %>
+                <div class="">
+                  <%= image_tag event['photo'], :class => "event_photo" %>
+                </div>
+            <% end %>
             <p class="event-name"><%= event['name'] %></p>
             <div class="col-sm-6">
               <% if event['venue'] %>
