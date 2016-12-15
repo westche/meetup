@@ -190,6 +190,10 @@
 
 /* Responsive: Portrait tablets and up */
 @media screen and (max-width: 425px) {
+  .search-button {
+    width: 100%;
+  }
+
   .content {
     margin-top: 30px;
 
