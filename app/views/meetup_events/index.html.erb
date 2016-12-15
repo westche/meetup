@@ -13,6 +13,7 @@
   <% end %>
 </div>
 <div class="content">
+  <% if @fitness_events %>
   <h2 class="event-header">Meetup Events for Fitness</h2>
   <div class="event-container">
     <% @fitness_events.each do |fitness_event| %>
@@ -44,9 +45,11 @@
         </ul>
     <% end %>
   </div>
+  <% end %>
 
   <div class="clearfix"></div>
 
+  <% if @outdoor_events %>
   <h2 class="event-header">Meetup Events for Outdoors & Adventure</h2>
   <div class="event-container">
     <% @outdoor_events.each do |event| %>
@@ -78,9 +81,11 @@
         </ul>
     <% end %>
   </div>
+  <% end %>
 
   <div class="clearfix"></div>
 
+  <% if @outdoor_events %>
   <h2 class="event-header">Meetup Events for Sports & Recreation</h2>
   <div class="event-container">
     <% @sports_events.each do |event| %>
@@ -111,13 +116,9 @@
         </ul>
     <% end %>
   </div>
+  <% end %>
+
+  <% if !@outdoor_events && !@outdoor_events && !@outdoor_events %>
+  <p class="no-result">No Search Result</p>
+  <% end %>
 </div>
-
-<script>
-    function join_to_event(event, selected_event) {
-        document.getElementById("demo").innerHTML = selected_event;
-    }
-</script>
-
-
-

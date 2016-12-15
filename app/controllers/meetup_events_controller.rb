@@ -1,38 +1,6 @@
 class MeetupEventsController < ApplicationController
   def index
-    zipcode = 90001
-    radius = 50
 
-    meetup_api = MeetupApi.new
-    params = {
-        category: '9',
-        format: 'json',
-        page: '5',
-        radius: radius,
-        zip: zipcode
-    }
-    fitness_events = meetup_api.open_events(params)
-    @fitness_events = fitness_events['results']
-
-    params = {
-        category: '23',
-        format: 'json',
-        page: '5',
-        radius: radius,
-        zip: zipcode
-    }
-    outdoor_events = meetup_api.open_events(params)
-    @outdoor_events = outdoor_events['results']
-
-    params = {
-        category: '32',
-        format: 'json',
-        page: '5',
-        radius: radius,
-        zip: zipcode
-    }
-    sports_events = meetup_api.open_events(params)
-    @sports_events = sports_events['results']
   end
 
   def search
@@ -72,7 +40,8 @@ class MeetupEventsController < ApplicationController
         format: 'json',
         page: '5',
         radius: radius,
-        zip: zipcode
+        zip: zipcode,
+        city: city
     }
     outdoor_events = meetup_api.open_events(params)
     @outdoor_events = outdoor_events['results']
@@ -82,7 +51,8 @@ class MeetupEventsController < ApplicationController
         format: 'json',
         page: '5',
         radius: radius,
-        zip: zipcode
+        zip: zipcode,
+        city: city
     }
     sports_events = meetup_api.open_events(params)
     @sports_events = sports_events['results']
