@@ -23,7 +23,7 @@
           <li class="row event-listing clearfix doc-padding">
             <div>
               <span class="event-time"><%= Time.at(fitness_event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
-              <%= link_to "Join to event", {:controller => "meetup_events", :action => "join", :event => fitness_event }, class: "join-button btn btn-success" %>
+              <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => fitness_event }, class: "join-button btn btn-success" %>
             </div>            <p class="event-name"><%= fitness_event['name'] %></p>
             <div class="col-sm-6">
               <% if fitness_event['venue'] %>
@@ -32,6 +32,10 @@
                   <p class="col-sm-9 col-xs-9 event-venue-name"><%= fitness_event['venue']['name'] %></p>
                   <p class="col-sm-4 col-xs-4 event-venue-label">Address : </p>
                   <p class="col-sm-8 col-xs-8 event-venue-address"><%= fitness_event['venue']['address_1'] %>, <%= fitness_event['venue']['city'] %>, <%= fitness_event['venue']['localized_country_name'] %></p>
+                  <div>
+                    <p class="col-sm-5 col-xs-5 event-venue-label">Members : </p>
+                    <p class="col-sm-7 col-xs-7 event-venue-name"><%= fitness_event['members'] %></p>
+                  </div>
               <% end %>
             </div>
             <div class="col-sm-6">
@@ -60,7 +64,7 @@
           <li class="row event-listing clearfix doc-padding">
             <div>
               <span class="event-time"><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
-              <%= link_to "Join to event", {:controller => "meetup_events", :action => "join", :event => event }, class: "join-button btn btn-success" %>
+              <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => event }, class: "join-button btn btn-success" %>
             </div>            <p class="event-name"><%= event['name'] %></p>
             <div class="col-sm-6">
               <% if event['venue'] %>
@@ -69,6 +73,10 @@
                   <p class="col-sm-9 col-xs-9 event-venue-name"><%= event['venue']['name'] %></p>
                   <p class="col-sm-4 col-xs-4 event-venue-label">Address : </p>
                   <p class="col-sm-8 col-xs-8 event-venue-address"><%= event['venue']['address_1'] %>, <%= event['venue']['city'] %>, <%= event['venue']['localized_country_name'] %></p>
+                  <div>
+                    <p class="col-sm-5 col-xs-5 event-venue-label">Members : </p>
+                    <p class="col-sm-7 col-xs-7 event-venue-name"><%= event['members'] %></p>
+                  </div>
               <% end %>
             </div>
             <div class="col-sm-6">
@@ -96,7 +104,7 @@
           <li class="row event-listing clearfix doc-padding">
             <div>
               <span class="event-time"><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
-              <%= link_to "Join to event", {:controller => "meetup_events", :action => "join", :event => event }, class: "join-button btn btn-success" %>
+              <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => event }, class: "join-button btn btn-success" %>
             </div>
             <p class="event-name"><%= event['name'] %></p>
             <div class="col-sm-6">
@@ -106,6 +114,10 @@
                   <p class="col-sm-9 col-xs-9 event-venue-name"><%= event['venue']['name'] %></p>
                   <p class="col-sm-4 col-xs-4 event-venue-label">Address : </p>
                   <p class="col-sm-8 col-xs-8 event-venue-address"><%= event['venue']['address_1'] %>, <%= event['venue']['city'] %>, <%= event['venue']['localized_country_name'] %></p>
+                  <div>
+                    <p class="col-sm-5 col-xs-5 event-venue-label">Members : </p>
+                    <p class="col-sm-7 col-xs-7 event-venue-name"><%= event['members'] %></p>
+                  </div>
               <% end %>
             </div>
             <div class="col-sm-6">
