@@ -31,21 +31,21 @@ class MeetupEventsController < ApplicationController
     fitness_events = meetup_api.open_events(p)
     @fitness_events = fitness_events['results']
 
-    @fitness_events.each do |event|
-      event_param = {
-          category: '9',
-          format: 'json',
-          event_id: event['id']
-      }
-      event_info = meetup_api.events(event_param)
-      # photo_info = meetup_api.photos(event_param)
-      event['members'] = event_info['results'][0]['headcount']
-      # length = photo_info['results'].length
-
-      # if length > 0
-      #   event['photo'] = photo_info['results'][0]['highres_link']
-      # end
-    end
+    # @fitness_events.each do |event|
+    #   event_param = {
+    #       category: '9',
+    #       format: 'json',
+    #       event_id: event['id']
+    #   }
+    #   event_info = meetup_api.events(event_param)
+    #   # photo_info = meetup_api.photos(event_param)
+    #   event['members'] = event_info['results'][0]['headcount']
+    #   # length = photo_info['results'].length
+    #
+    #   # if length > 0
+    #   #   event['photo'] = photo_info['results'][0]['highres_link']
+    #   # end
+    # end
 
     p = {
         category: '23',
@@ -58,21 +58,21 @@ class MeetupEventsController < ApplicationController
     outdoor_events = meetup_api.open_events(p)
     @outdoor_events = outdoor_events['results']
 
-    @outdoor_events.each do |event|
-      event_param = {
-          category: '23',
-          format: 'json',
-          event_id: event['id']
-      }
-      event_info = meetup_api.events(event_param)
-      # photo_info = meetup_api.photos(event_param)
-      event['members'] = event_info['results'][0]['headcount']
-      # length = photo_info['results'].length
-
-      # if length > 0
-      #   event['photo'] = photo_info['results'][0]['highres_link']
-      # end
-    end
+    # @outdoor_events.each do |event|
+    #   event_param = {
+    #       category: '23',
+    #       format: 'json',
+    #       event_id: event['id']
+    #   }
+    #   event_info = meetup_api.events(event_param)
+    #   # photo_info = meetup_api.photos(event_param)
+    #   event['members'] = event_info['results'][0]['headcount']
+    #   # length = photo_info['results'].length
+    #
+    #   # if length > 0
+    #   #   event['photo'] = photo_info['results'][0]['highres_link']
+    #   # end
+    # end
 
     p = {
         category: '32',
@@ -85,21 +85,21 @@ class MeetupEventsController < ApplicationController
     sports_events = meetup_api.open_events(p)
     @sports_events = sports_events['results']
 
-    @sports_events.each do |event|
-      event_param = {
-          category: '32',
-          format: 'json',
-          event_id: event['id']
-      }
-      event_info = meetup_api.events(event_param)
-      # photo_info = meetup_api.photos(event_param)
-      event['members'] = event_info['results'][0]['headcount']
-      # length = photo_info['results'].length
-
-      # if length > 0
-      #   event['photo'] = photo_info['results'][0]['highres_link']
-      # end
-    end
+    # @sports_events.each do |event|
+    #   event_param = {
+    #       category: '32',
+    #       format: 'json',
+    #       event_id: event['id']
+    #   }
+    #   event_info = meetup_api.events(event_param)
+    #   # photo_info = meetup_api.photos(event_param)
+    #   event['members'] = event_info['results'][0]['headcount']
+    #   # length = photo_info['results'].length
+    #
+    #   # if length > 0
+    #   #   event['photo'] = photo_info['results'][0]['highres_link']
+    #   # end
+    # end
 
     render :index
   end
@@ -140,21 +140,21 @@ class MeetupEventsController < ApplicationController
     fitness_events = meetup_api.open_events(p)
     @fitness_events = fitness_events['results']
 
-    @fitness_events.each do |event|
-      event_param = {
-          category: '9',
-          format: 'json',
-          event_id: event['id']
-      }
-      event_info = meetup_api.events(event_param)
-      # photo_info = meetup_api.photos(event_param)
-      event['members'] = event_info['results'][0]['headcount']
-      # length = photo_info['results'].length
-
-      # if length > 0
-      #   event['photo'] = photo_info['results'][0]['highres_link']
-      # end
-    end
+    # @fitness_events.each do |event|
+    #   event_param = {
+    #       category: '9',
+    #       format: 'json',
+    #       event_id: event['id']
+    #   }
+    #   event_info = meetup_api.events(event_param)
+    #   # photo_info = meetup_api.photos(event_param)
+    #   event['members'] = event_info['results'][0]['headcount']
+    #   # length = photo_info['results'].length
+    #
+    #   # if length > 0
+    #   #   event['photo'] = photo_info['results'][0]['highres_link']
+    #   # end
+    # end
 
     p = {
         category: '23',
@@ -167,21 +167,21 @@ class MeetupEventsController < ApplicationController
     outdoor_events = meetup_api.open_events(p)
     @outdoor_events = outdoor_events['results']
 
-    @outdoor_events.each do |event|
-      event_param = {
-          category: '23',
-          format: 'json',
-          event_id: event['id']
-      }
-      event_info = meetup_api.events(event_param)
-      # photo_info = meetup_api.photos(event_param)
-      event['members'] = event_info['results'][0]['headcount']
-      # length = photo_info['results'].length
-
-      # if length > 0
-      #   event['photo'] = photo_info['results'][0]['highres_link']
-      # end
-    end
+    # @outdoor_events.each do |event|
+    #   event_param = {
+    #       category: '23',
+    #       format: 'json',
+    #       event_id: event['id']
+    #   }
+    #   event_info = meetup_api.events(event_param)
+    #   # photo_info = meetup_api.photos(event_param)
+    #   event['members'] = event_info['results'][0]['headcount']
+    #   # length = photo_info['results'].length
+    #
+    #   # if length > 0
+    #   #   event['photo'] = photo_info['results'][0]['highres_link']
+    #   # end
+    # end
 
     p = {
         category: '32',
@@ -194,21 +194,21 @@ class MeetupEventsController < ApplicationController
     sports_events = meetup_api.open_events(p)
     @sports_events = sports_events['results']
 
-    @sports_events.each do |event|
-      event_param = {
-          category: '32',
-          format: 'json',
-          event_id: event['id']
-      }
-      event_info = meetup_api.events(event_param)
-      # photo_info = meetup_api.photos(event_param)
-      event['members'] = event_info['results'][0]['headcount']
-      # length = photo_info['results'].length
-
-      # if length > 0
-      #   event['photo'] = photo_info['results'][0]['highres_link']
-      # end
-    end
+    # @sports_events.each do |event|
+    #   event_param = {
+    #       category: '32',
+    #       format: 'json',
+    #       event_id: event['id']
+    #   }
+    #   event_info = meetup_api.events(event_param)
+    #   # photo_info = meetup_api.photos(event_param)
+    #   event['members'] = event_info['results'][0]['headcount']
+    #   # length = photo_info['results'].length
+    #
+    #   # if length > 0
+    #   #   event['photo'] = photo_info['results'][0]['highres_link']
+    #   # end
+    # end
 
     render :index
   end
