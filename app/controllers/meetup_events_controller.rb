@@ -23,7 +23,7 @@ class MeetupEventsController < ApplicationController
     p = {
         category: '9',
         format: 'json',
-        page: '5',
+        page: '20',
         radius: radius,
         zip: zipcode,
         city: city
@@ -38,19 +38,19 @@ class MeetupEventsController < ApplicationController
           event_id: event['id']
       }
       event_info = meetup_api.events(event_param)
-      photo_info = meetup_api.photos(event_param)
+      # photo_info = meetup_api.photos(event_param)
       event['members'] = event_info['results'][0]['headcount']
-      length = photo_info['results'].length
+      # length = photo_info['results'].length
 
-      if length > 0
-        event['photo'] = photo_info['results'][0]['highres_link']
-      end
+      # if length > 0
+      #   event['photo'] = photo_info['results'][0]['highres_link']
+      # end
     end
 
     p = {
         category: '23',
         format: 'json',
-        page: '5',
+        page: '20',
         radius: radius,
         zip: zipcode,
         city: city
@@ -65,19 +65,19 @@ class MeetupEventsController < ApplicationController
           event_id: event['id']
       }
       event_info = meetup_api.events(event_param)
-      photo_info = meetup_api.photos(event_param)
+      # photo_info = meetup_api.photos(event_param)
       event['members'] = event_info['results'][0]['headcount']
-      length = photo_info['results'].length
+      # length = photo_info['results'].length
 
-      if length > 0
-        event['photo'] = photo_info['results'][0]['highres_link']
-      end
+      # if length > 0
+      #   event['photo'] = photo_info['results'][0]['highres_link']
+      # end
     end
 
     p = {
         category: '32',
         format: 'json',
-        page: '5',
+        page: '20',
         radius: radius,
         zip: zipcode,
         city: city
@@ -92,13 +92,13 @@ class MeetupEventsController < ApplicationController
           event_id: event['id']
       }
       event_info = meetup_api.events(event_param)
-      photo_info = meetup_api.photos(event_param)
+      # photo_info = meetup_api.photos(event_param)
       event['members'] = event_info['results'][0]['headcount']
-      length = photo_info['results'].length
+      # length = photo_info['results'].length
 
-      if length > 0
-        event['photo'] = photo_info['results'][0]['highres_link']
-      end
+      # if length > 0
+      #   event['photo'] = photo_info['results'][0]['highres_link']
+      # end
     end
 
     render :index
@@ -147,19 +147,19 @@ class MeetupEventsController < ApplicationController
           event_id: event['id']
       }
       event_info = meetup_api.events(event_param)
-      photo_info = meetup_api.photos(event_param)
+      # photo_info = meetup_api.photos(event_param)
       event['members'] = event_info['results'][0]['headcount']
-      length = photo_info['results'].length
+      # length = photo_info['results'].length
 
-      if length > 0
-        event['photo'] = photo_info['results'][0]['highres_link']
-      end
+      # if length > 0
+      #   event['photo'] = photo_info['results'][0]['highres_link']
+      # end
     end
 
     p = {
         category: '23',
         format: 'json',
-        page: '5',
+        page: '20',
         radius: radius,
         zip: zipcode,
         city: city
@@ -174,19 +174,19 @@ class MeetupEventsController < ApplicationController
           event_id: event['id']
       }
       event_info = meetup_api.events(event_param)
-      photo_info = meetup_api.photos(event_param)
+      # photo_info = meetup_api.photos(event_param)
       event['members'] = event_info['results'][0]['headcount']
-      length = photo_info['results'].length
+      # length = photo_info['results'].length
 
-      if length > 0
-        event['photo'] = photo_info['results'][0]['highres_link']
-      end
+      # if length > 0
+      #   event['photo'] = photo_info['results'][0]['highres_link']
+      # end
     end
 
     p = {
         category: '32',
         format: 'json',
-        page: '5',
+        page: '20',
         radius: radius,
         zip: zipcode,
         city: city
@@ -201,13 +201,13 @@ class MeetupEventsController < ApplicationController
           event_id: event['id']
       }
       event_info = meetup_api.events(event_param)
-      photo_info = meetup_api.photos(event_param)
+      # photo_info = meetup_api.photos(event_param)
       event['members'] = event_info['results'][0]['headcount']
-      length = photo_info['results'].length
+      # length = photo_info['results'].length
 
-      if length > 0
-        event['photo'] = photo_info['results'][0]['highres_link']
-      end
+      # if length > 0
+      #   event['photo'] = photo_info['results'][0]['highres_link']
+      # end
     end
 
     render :index
