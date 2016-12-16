@@ -74,6 +74,10 @@
         height: 50%;
       }
 
+      .event-content {
+        display: flex;
+      }
+
       .event-name {
         font-size: 25px;
         text-align: center;
@@ -160,6 +164,10 @@
           width: 100%;
           margin: 20px 0;
           height: 50%;
+        }
+
+        .event-content {
+          display: flex;
         }
 
         .event-name {
@@ -262,6 +270,10 @@
           width: 100%;
           margin: 20px 0;
           height: 50%;
+        }
+
+        .event-content {
+          display: block;
         }
 
         .event-name {

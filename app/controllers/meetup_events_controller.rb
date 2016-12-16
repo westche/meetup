@@ -14,6 +14,8 @@ class MeetupEventsController < ApplicationController
       zipcode = params[:filter_options][:zipcode]
       radius = params[:filter_options][:radius]
 
+      radius = 50
+
       if zipcode !~ /\A\d{5}-\d{4}|\A\d{5}\z/
         @message = 'Please full fill the search box!'
         render :index
