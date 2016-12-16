@@ -1,7 +1,7 @@
 <div class="background">
   <%= simple_form_for :filter_options, :url => url_for(:action => 'search', :controller => 'meetup_events'), html: { class: "form-inline search-form" } do |f| %>
       <div class="form-group search-box">
-        <%= f.input_field :zipcode, class: 'form-control', placeholder: 'City or Zipcode' %>
+        <%= f.input_field :zipcode, class: 'form-control', placeholder: 'Zipcode' %>
       </div>
       <div class="form-group search-box">
         <%= f.input_field :radius, class: 'form-control', placeholder: 'Radius' %>
@@ -33,26 +33,49 @@
             <p class="event-name"><%= fitness_event['name'] %></p>
             <div class="col-sm-6">
               <% if fitness_event['venue'] %>
-                  <p class="event-venue">Venue : </p>
-                  <p class="col-sm-3 col-xs-3 event-venue-label">Name : </p>
-                  <p class="col-sm-9 col-xs-9 event-venue-name"><%= fitness_event['venue']['name'] %></p>
-                  <p class="col-sm-4 col-xs-4 event-venue-label">Address : </p>
-                  <p class="col-sm-8 col-xs-8 event-venue-address"><%= fitness_event['venue']['address_1'] %>, <%= fitness_event['venue']['city'] %>, <%= fitness_event['venue']['localized_country_name'] %></p>
-                  <!--<div>-->
-                    <!--<p class="col-sm-5 col-xs-5 event-venue-label">Members : </p>-->
-                    <!--<p class="col-sm-7 col-xs-7 event-venue-name"><%= fitness_event['members'] %></p>-->
-                  <!--</div>-->
+                  <div>
+                    <p class="event-venue">Venue : </p>
+                  </div>
+                  <div>
+                    <p class="col-sm-3 col-xs-3 event-venue-label">Name : </p>
+                    <p class="col-sm-9 col-xs-9 event-venue-content"><%= fitness_event['venue']['name'] %></p>
+                  </div>
+                  <div>
+                    <p class="col-sm-4 col-xs-4 event-venue-label">Address : </p>
+                    <p class="col-sm-8 col-xs-8 event-venue-content"><%= fitness_event['venue']['address_1'] %>, <%= fitness_event['venue']['city'] %>, <%= fitness_event['venue']['localized_country_name'] %></p>
+                  </div>
               <% end %>
             </div>
             <div class="col-sm-6">
-              <p class="event-group">Group : </p>
-              <p class="col-sm-3 col-xs-3 event-group-label">Name : </p>
-              <p class="col-sm-9 col-xs-9 event-group-name"><%= fitness_event['group']['name'] %></p>
-              <p class="col-sm-3 col-xs-3 event-group-label">Who : </p>
-              <p class="col-sm-9 col-xs-9 event-group-creator"><%= fitness_event['group']['who'] %></p>
-              <p class="col-sm-4 col-xs-4 event-group-label">Created Date : </p>
-              <p class="col-sm-8 col-xs-8 event-group-date"><%= Time.at(fitness_event['group']['created']/1000).strftime("%B %e, %Y at %I:%M %p") %></p>
-              <p id="demo"></p>
+              <div>
+                <p class="event-group">Group : </p>
+              </div>
+              <div>
+                <p class="col-sm-3 col-xs-3 event-group-label">Name : </p>
+                <p class="col-sm-9 col-xs-9 event-group-content"><%= fitness_event['group']['name'] %></p>
+              </div>
+              <div>
+                <p class="col-sm-3 col-xs-3 event-group-label">Who : </p>
+                <p class="col-sm-9 col-xs-9 event-group-content"><%= fitness_event['group']['who'] %></p>
+              </div>
+              <div>
+                <p class="col-sm-4 col-xs-4 event-group-label">Created Date : </p>
+                <p class="col-sm-8 col-xs-8 event-group-content"><%= Time.at(fitness_event['group']['created']/1000).strftime("%B %e, %Y at %I:%M %p") %></p>
+              </div>
+            </div>
+            <div class="members">
+              <div class="col-sm-4">
+                <p class="col-sm-10 col-xs-10 event-venue-label">Attendace Count :</p>
+                <p class="col-sm-2 col-xs-2 event-venue-content"><%= fitness_event['headcount'] %></p>
+              </div>
+              <div class="col-sm-4">
+                <p class="col-sm-10 col-xs-10 event-venue-label">Maybe RSVP Count :</p>
+                <p class="col-sm-2 col-xs-2 event-venue-content"><%= fitness_event['maybe_rsvp_count'] %></p>
+              </div>
+              <div class="col-sm-4">
+                <p class="col-sm-10 col-xs-10 event-venue-label">Yes RSVP Count :</p>
+                <p class="col-sm-2 col-xs-2 event-venue-content"><%= fitness_event['yes_rsvp_count'] %></p>
+              </div>
             </div>
           </li>
         </ul>

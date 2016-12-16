@@ -78,17 +78,28 @@
         font-size: 25px;
         text-align: center;
         margin-top: 20px;
+        font-weight: bold;
       }
 
       .event-venue, .event-group {
         font-size: 20px;
-        /* width: 9%; */
-        //margin-left: 10%;
         text-align: left;
+        font-weight: bold;
       }
 
       .event-venue-label, .event-group-label {
         text-align: left;
+        padding: 0;
+        font-weight: bold;
+      }
+
+      .event-venue-content, .event-group-content {
+        text-align: right;
+        padding: 0;
+      }
+
+      .members {
+        margin: 10px 0;
       }
     }
     &:hover {
@@ -155,6 +166,7 @@
           font-size: 25px;
           text-align: center;
           margin-top: 20px;
+          font-weight: bold;
         }
 
         .event-venue, .event-group {
@@ -162,10 +174,22 @@
           /* width: 9%; */
           //margin-left: 10%;
           text-align: left;
+          font-weight: bold;
         }
 
         .event-venue-label, .event-group-label {
           text-align: left;
+          padding: 0;
+          font-weight: bold;
+        }
+
+        .event-venue-content, .event-group-content {
+          text-align: right;
+          padding: 0;
+        }
+
+        .members {
+          margin: 10px 0;
         }
       }
       &:hover {
@@ -244,16 +268,28 @@
           font-size: 25px;
           text-align: center;
           margin-top: 20px;
+          font-weight: bold;
         }
 
         .event-venue, .event-group {
           font-size: 20px;
           text-align: left;
+          font-weight: bold;
         }
 
         .event-venue-label, .event-group-label {
           text-align: left;
-          padding-right: 10px;
+          padding: 0;
+          font-weight: bold;
+        }
+
+        .event-venue-content, .event-group-content {
+          text-align: right;
+          padding: 0;
+        }
+
+        .members {
+          margin: 10px 0;
         }
       }
       &:hover {
