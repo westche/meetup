@@ -1,9 +1,10 @@
 class MeetupEventsController < ApplicationController
   def index
-
+    @radius_list = [ '10', '20', '30', '40', '50', '60', '70', '80', '90', '100' ]
   end
 
   def search
+    @radius_list = [ '10', '20', '30', '40', '50', '60', '70', '80', '90', '100' ]
     if params[:filter_options].present?
       if params[:filter_options][:zipcode] == '' || params[:filter_options][:radius] == ''
         @message = 'Please full fill the search box!'

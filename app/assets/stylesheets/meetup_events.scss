@@ -2,12 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .background {
-  background-size: cover;
+  //background-size: cover;
+  //background-repeat: no-repeat;
+  //height: 390px;
+  //width: 100%;
+  //background-image: url(/images/background.jpeg);
+  //display: table;
+
+  background-size: contain;
   background-repeat: no-repeat;
-  height: 390px;
-  width: 100%;
-  background-image: url(/images/background.png);
+  height: 100vh;
+  background-image: url(/images/background.jpeg);
   display: table;
+  background-position: center;
 
   ::-webkit-input-placeholder { /* WebKit browsers */
     direction: rtl;
@@ -32,6 +39,15 @@
 
   .search-box {
     margin: 10px 20px 10px 20px;
+
+    .radius-input {
+      height: 35px;
+    }
+
+    .radius-label {
+      font-size: larger;
+      margin: 10px;
+    }
   }
 }
 
