@@ -48,11 +48,6 @@
   .radius-input {
     height: 35px;
   }
-
-  .radius-label {
-    font-size: larger;
-    margin: 10px;
-  }
 }
 
 .content {
@@ -129,6 +124,7 @@
     &:hover {
       border-color: rgb(222, 222, 222);
       background-color: rgba(177, 173, 173, 0.2);
+      cursor: pointer;
     }
 
     .doc-content, .doc-controls, .doc-padding {
