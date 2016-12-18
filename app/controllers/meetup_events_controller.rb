@@ -5,25 +5,22 @@ class MeetupEventsController < ApplicationController
 
   def search
     @radius_list = [ '10', '20', '30', '40', '50', '60', '70', '80', '90', '100' ]
-    if params[:filter_options].present?
-      if params[:filter_options][:zipcode] == '' || params[:filter_options][:radius] == ''
-        @message = 'Please full fill the search box!'
-        render :index
-        return
-      end
 
-      zipcode = params[:filter_options][:zipcode]
-      radius = params[:filter_options][:radius]
+    if params[:zipcode] == '' || params[:radius] == ''
+      @message = 'Please full fill the search box!'
+      render :index
+      # redirect_to
+      return
+    end
 
-      if zipcode !~ /\A\d{5}-\d{4}|\A\d{5}\z/
-        @message = 'Please full fill the search box!'
-        return
-      else
-        city = ''
-      end
-    else
+    zipcode = params[:zipcode]
+    radius = params[:radius]
+
+    if zipcode !~ /\A\d{5}-\d{4}|\A\d{5}\z/
       @message = 'Please full fill the search box!'
       return
+    else
+      city = ''
     end
 
     meetup_api = MeetupApi.new

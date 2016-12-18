@@ -9,12 +9,13 @@
   //background-image: url(/images/background.jpeg);
   //display: table;
 
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
   background-image: url(/images/background.jpeg);
   display: table;
   background-position: center;
+  width: 100%;
 
   ::-webkit-input-placeholder { /* WebKit browsers */
     direction: rtl;
