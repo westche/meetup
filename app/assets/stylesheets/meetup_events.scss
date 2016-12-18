@@ -40,7 +40,10 @@
 }
 
 .grid-sizer,
-.grid-item { width: 300px; }
+.grid-item {
+  width: 300px;
+  margin-bottom: 10px;
+}
 
 .search-box {
   margin: 10px 20px 10px 20px;
@@ -65,15 +68,12 @@
     background-clip: padding-box;
     background-color: #f7f7f7;
     border: 1px solid rgba(0,0,0,.12);
-    border-radius: 3px;
-    display: block;
-    list-style: none;
-    margin: 0 0 16px;
+    border-radius: 10px;
     padding: 15px;
 
     .event-listing {
       border-width: 0;
-      padding: 16px 16px 0;
+      padding: 0 16px 0;
       font-size: 16px;
       text-align: right;
 
@@ -85,8 +85,8 @@
 
       .event_photo {
         width: 100%;
-        margin: 20px 0;
-        height: 50%;
+        margin: 0 0 10px;
+        /* height: 50%; */
       }
 
       .event-content {
@@ -94,10 +94,10 @@
       }
 
       .event-name {
-        font-size: 20px;
+        font-size: 15px;
         text-align: center;
-        margin-top: 20px;
-        font-weight: bold;
+        margin-top: 10px;
+        /* font-weight: bold; */
       }
 
       .event-venue, .event-group {
@@ -129,7 +129,7 @@
 
     .doc-content, .doc-controls, .doc-padding {
       //border-bottom: 1px solid transparent;
-      padding: 16px 16px 0;
+      //padding: 16px 16px 0;
     }
   }
 
@@ -144,7 +144,10 @@
 /* Responsive: Portrait tablets and up */
 @media screen and (max-width: 768px) {
   .grid-sizer,
-  .grid-item { width: 33.333%; }
+  .grid-item {
+    width: 33.333%;
+    margin-bottom: 10px;
+  }
 
   .content {
     margin-top: 30px;
@@ -161,16 +164,13 @@
       background-clip: padding-box;
       background-color: #f7f7f7;
       border: 1px solid rgba(0,0,0,.12);
-      border-radius: 3px;
-      display: block;
-      list-style: none;
-      margin: 0 0 16px;
+      border-radius: 10px;
       padding: 15px;
 
       .event-listing {
         border-width: 0;
-        padding: 16px 16px 0;
-        font-size: 14px;
+        padding: 0 16px 0;
+        font-size: 16px;
         text-align: right;
 
         .event-time {
@@ -181,8 +181,8 @@
 
         .event-photo {
           width: 100%;
-          margin: 20px 0;
-          height: 50%;
+          margin: 0 0 10px;
+          /* height: 50%; */
         }
 
         .event-content {
@@ -190,10 +190,10 @@
         }
 
         .event-name {
-          font-size: 18px;
+          font-size: 15px;
           text-align: center;
-          margin-top: 20px;
-          font-weight: bold;
+          margin-top: 10px;
+          /* font-weight: bold; */
         }
 
         .event-venue, .event-group {
@@ -242,7 +242,10 @@
 /* Responsive: Portrait tablets and up */
 @media screen and (max-width: 425px) {
   .grid-sizer,
-  .grid-item { width: 100%; }
+  .grid-item {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 
   .search-button {
     width: 100%;
@@ -263,16 +266,13 @@
       background-clip: padding-box;
       background-color: #f7f7f7;
       border: 1px solid rgba(0,0,0,.12);
-      border-radius: 3px;
-      display: block;
-      list-style: none;
-      margin: 0 0 16px;
+      border-radius: 10px;
       padding: 15px;
 
       .event-listing {
         border-width: 0;
-        padding: 16px 16px 0;
-        font-size: 12px;
+        padding: 0 16px 0;
+        font-size: 16px;
         text-align: right;
 
         .event-time {
@@ -290,8 +290,8 @@
 
         .event-photo {
           width: 100%;
-          margin: 20px 0;
-          height: 50%;
+          margin: 0 0 10px;
+          /* height: 50%; */
         }
 
         .event-content {
@@ -301,8 +301,8 @@
         .event-name {
           font-size: 15px;
           text-align: center;
-          margin-top: 20px;
-          font-weight: bold;
+          margin-top: 10px;
+          /* font-weight: bold; */
         }
 
         .event-venue, .event-group {

@@ -40,6 +40,7 @@
                   <% end %>
                   <p class="event-name"><%= fitness_event['name'] %></p>
                 </div>
+                <span class="glyphicon glyphicon-user"> : <%= fitness_event['yes_rsvp_count'] %></span>
               </div>
             </div>
         <% end %>
@@ -94,7 +95,8 @@
 //        // options...
 //        columnWidth: 20,
 //        fitWidth: true,
-        itemSelector: '.grid-item'
+        itemSelector: '.grid-item',
+        gutter: 10
     });
 
     $("div.grid-item").click(function() {
