@@ -15,22 +15,14 @@ class MeetupEventsController < ApplicationController
       zipcode = params[:filter_options][:zipcode]
       radius = params[:filter_options][:radius]
 
-      radius = 50
-
       if zipcode !~ /\A\d{5}-\d{4}|\A\d{5}\z/
         @message = 'Please full fill the search box!'
-        render :index
         return
-        # city = zipcode
-        # zipcode = ''
       else
         city = ''
       end
     else
-      # zipcode = 0
-      # radius = 25
       @message = 'Please full fill the search box!'
-      render :index
       return
     end
 
@@ -38,7 +30,7 @@ class MeetupEventsController < ApplicationController
     p = {
         category: '9',
         format: 'json',
-        page: '40',
+        page: '20',
         fields: 'group_photo,photo_count,photo_sample',
         radius: radius,
         zip: zipcode,
@@ -62,7 +54,7 @@ class MeetupEventsController < ApplicationController
     p = {
         category: '23',
         format: 'json',
-        page: '3',
+        page: '20',
         fields: 'group_photo,photo_count,photo_sample',
         radius: radius,
         zip: zipcode,
@@ -86,7 +78,7 @@ class MeetupEventsController < ApplicationController
     p = {
         category: '32',
         format: 'json',
-        page: '3',
+        page: '20',
         fields: 'group_photo,photo_count,photo_sample',
         radius: radius,
         zip: zipcode,
@@ -111,9 +103,26 @@ class MeetupEventsController < ApplicationController
   # meetup_events/detailed_event/:id
   def detailed_event
     puts params[:event]
-    @event = params[:event]
-    abc = @event[:event_url]
-    # redirect_to selected_event[:event_url]
+    event_id = params[:event]
+
+    meetup_api = MeetupApi.new
+    p = {
+        format: 'json',
+        fields: 'group_photo,photo_count,photo_sample',
+        event_id: event_id
+    }
+    event = meetup_api.events(p)
+    @detailed_event = event['results'][0]
+
+    if @detailed_event != nil
+      if @detailed_event['photo_count'] > 0
+        @detailed_event['photo'] = @detailed_event['photo_sample'][0]['photo_link']
+      else
+        if @detailed_event['group']['group_photo'].present?
+          @detailed_event['photo'] = @detailed_event['group']['group_photo']['photo_link']
+        end
+      end
+    end
   end
 
   def join

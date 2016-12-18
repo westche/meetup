@@ -26,8 +26,8 @@
 </nav>
 
 <div class="content">
-  <% if @fitness_events %>
-      <div class="event-container grid">
+  <div class="event-container grid">
+    <% if @fitness_events %>
         <% @fitness_events.each do |fitness_event| %>
             <div class="grid-item">
               <div class="event-list-container">
@@ -43,148 +43,50 @@
               </div>
             </div>
         <% end %>
-      </div>
-  <% end %>
-  <div class="clearfix"></div>
+    <% end %>
 
-  <% if @outdoor_events %>
-      <h2 class="event-header">Meetup Events for Outdoors & Adventure</h2>
-      <div class="event-container">
+    <% if @outdoor_events %>
         <% @outdoor_events.each do |event| %>
-            <ul class="event-list-container">
-              <li class="row event-listing clearfix doc-padding">
-                <div>
-                  <span class="event-time"><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
-                  <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => event }, class: "join-button btn btn-success" %>
+            <div class="grid-item">
+              <div class="event-list-container">
+                <%= link_to "Register for event", {:controller => "meetup_events", :action => "detailed_event", :event => event['id'] }, class: "join-button btn btn-success hidden" %>
+                <div class="row event-listing clearfix doc-padding">
+                  <% if event['photo'] %>
+                      <div class="">
+                        <%= image_tag event['photo'], :class => "event_photo" %>
+                      </div>
+                  <% end %>
+                  <p class="event-name"><%= event['name'] %></p>
                 </div>
-                <% if event['photo'] %>
-                    <div class="">
-                      <%= image_tag event['photo'], :class => "event_photo" %>
-                    </div>
-                <% end %>
-                <p class="event-name"><%= event['name'] %></p>
-                <div class="event-content">
-                  <div class="col-sm-6">
-                    <% if event['venue'] %>
-                        <div>
-                          <p class="event-venue">Venue : </p>
-                        </div>
-                        <div>
-                          <p class="col-sm-3 col-xs-3 event-venue-label">Name : </p>
-                          <p class="col-sm-9 col-xs-9 event-venue-content"><%= event['venue']['name'] %></p>
-                        </div>
-                        <div>
-                          <p class="col-sm-4 col-xs-4 event-venue-label">Address : </p>
-                          <p class="col-sm-8 col-xs-8 event-venue-content"><%= event['venue']['address_1'] %>, <%= event['venue']['city'] %>, <%= event['venue']['localized_country_name'] %></p>
-                        </div>
-                    <% end %>
-                  </div>
-                  <div class="col-sm-6">
-                    <div>
-                      <p class="event-group">Group : </p>
-                    </div>
-                    <div>
-                      <p class="col-sm-3 col-xs-3 event-group-label">Name : </p>
-                      <p class="col-sm-9 col-xs-9 event-group-content"><%= event['group']['name'] %></p>
-                    </div>
-                    <div>
-                      <p class="col-sm-3 col-xs-3 event-group-label">Who : </p>
-                      <p class="col-sm-9 col-xs-9 event-group-content"><%= event['group']['who'] %></p>
-                    </div>
-                    <div>
-                      <p class="col-sm-4 col-xs-4 event-group-label">Created Date : </p>
-                      <p class="col-sm-8 col-xs-8 event-group-content"><%= Time.at(event['group']['created']/1000).strftime("%B %e, %Y at %I:%M %p") %></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="members">
-                  <div class="col-sm-6">
-                    <p class="col-sm-10 col-xs-10 event-venue-label">Maybe RSVP Count :</p>
-                    <p class="col-sm-2 col-xs-2 event-venue-content"><%= event['maybe_rsvp_count'] %></p>
-                  </div>
-                  <div class="col-sm-6">
-                    <p class="col-sm-10 col-xs-10 event-venue-label">Yes RSVP Count :</p>
-                    <p class="col-sm-2 col-xs-2 event-venue-content"><%= event['yes_rsvp_count'] %></p>
-                  </div>
-                </div>
-              </li>
-            </ul>
+              </div>
+            </div>
         <% end %>
-      </div>
-  <% end %>
+    <% end %>
 
-  <div class="clearfix"></div>
-
-  <% if @sports_events %>
-      <h2 class="event-header">Meetup Events for Sports & Recreation</h2>
-      <div class="event-container">
+    <% if @sports_events %>
         <% @sports_events.each do |event| %>
-            <ul class="event-list-container">
-              <li class="row event-listing clearfix doc-padding">
-                <div>
-                  <span class="event-time"><%= Time.at(event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
-                  <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => event }, class: "join-button btn btn-success" %>
+            <div class="grid-item">
+              <div class="event-list-container">
+                <%= link_to "Register for event", {:controller => "meetup_events", :action => "detailed_event", :event => event['id'] }, class: "join-button btn btn-success hidden" %>
+                <div class="row event-listing clearfix doc-padding">
+                  <% if event['photo'] %>
+                      <div class="">
+                        <%= image_tag event['photo'], :class => "event_photo" %>
+                      </div>
+                  <% end %>
+                  <p class="event-name"><%= event['name'] %></p>
                 </div>
-                <% if event['photo'] %>
-                    <div class="">
-                      <%= image_tag event['photo'], :class => "event_photo" %>
-                    </div>
-                <% end %>
-                <p class="event-name"><%= event['name'] %></p>
-                <div class="event-content">
-                  <div class="col-sm-6">
-                    <% if event['venue'] %>
-                        <div>
-                          <p class="event-venue">Venue : </p>
-                        </div>
-                        <div>
-                          <p class="col-sm-3 col-xs-3 event-venue-label">Name : </p>
-                          <p class="col-sm-9 col-xs-9 event-venue-content"><%= event['venue']['name'] %></p>
-                        </div>
-                        <div>
-                          <p class="col-sm-4 col-xs-4 event-venue-label">Address : </p>
-                          <p class="col-sm-8 col-xs-8 event-venue-content"><%= event['venue']['address_1'] %>, <%= event['venue']['city'] %>, <%= event['venue']['localized_country_name'] %></p>
-                        </div>
-                    <% end %>
-                  </div>
-                  <div class="col-sm-6">
-                    <div>
-                      <p class="event-group">Group : </p>
-                    </div>
-                    <div>
-                      <p class="col-sm-3 col-xs-3 event-group-label">Name : </p>
-                      <p class="col-sm-9 col-xs-9 event-group-content"><%= event['group']['name'] %></p>
-                    </div>
-                    <div>
-                      <p class="col-sm-3 col-xs-3 event-group-label">Who : </p>
-                      <p class="col-sm-9 col-xs-9 event-group-content"><%= event['group']['who'] %></p>
-                    </div>
-                    <div>
-                      <p class="col-sm-4 col-xs-4 event-group-label">Created Date : </p>
-                      <p class="col-sm-8 col-xs-8 event-group-content"><%= Time.at(event['group']['created']/1000).strftime("%B %e, %Y at %I:%M %p") %></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="members">
-                  <div class="col-sm-6">
-                    <p class="col-sm-10 col-xs-10 event-venue-label">Maybe RSVP Count :</p>
-                    <p class="col-sm-2 col-xs-2 event-venue-content"><%= event['maybe_rsvp_count'] %></p>
-                  </div>
-                  <div class="col-sm-6">
-                    <p class="col-sm-10 col-xs-10 event-venue-label">Yes RSVP Count :</p>
-                    <p class="col-sm-2 col-xs-2 event-venue-content"><%= event['yes_rsvp_count'] %></p>
-                  </div>
-                </div>
-              </li>
-            </ul>
+              </div>
+            </div>
         <% end %>
-      </div>
-  <% end %>
+    <% end %>
+  </div>
 
-  <!--<% if !@outdoor_events && !@outdoor_events && !@outdoor_events %>-->
-      <!--<p class="no-result">No Search Result</p>-->
-  <!--<% end %>-->
+  <% if !@fitness_events && !@outdoor_events && !@sports_events %>
+      <p class="no-result">No Search Result</p>
+  <% end %>
 </div>
+
 <script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
 <script>
     var grid = document.querySelector('.grid');
