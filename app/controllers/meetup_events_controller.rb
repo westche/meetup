@@ -38,7 +38,7 @@ class MeetupEventsController < ApplicationController
     p = {
         category: '9',
         format: 'json',
-        page: '20',
+        page: '40',
         fields: 'group_photo,photo_count,photo_sample',
         radius: radius,
         zip: zipcode,
@@ -62,7 +62,7 @@ class MeetupEventsController < ApplicationController
     p = {
         category: '23',
         format: 'json',
-        page: '20',
+        page: '3',
         fields: 'group_photo,photo_count,photo_sample',
         radius: radius,
         zip: zipcode,
@@ -86,7 +86,7 @@ class MeetupEventsController < ApplicationController
     p = {
         category: '32',
         format: 'json',
-        page: '20',
+        page: '3',
         fields: 'group_photo,photo_count,photo_sample',
         radius: radius,
         zip: zipcode,
@@ -106,11 +106,16 @@ class MeetupEventsController < ApplicationController
         end
       end
     end
-
-    render :index
   end
 
-  # meetup_events/join/:id
+  # meetup_events/detailed_event/:id
+  def detailed_event
+    puts params[:event]
+    @event = params[:event]
+    abc = @event[:event_url]
+    # redirect_to selected_event[:event_url]
+  end
+
   def join
     puts params[:event]
     selected_event = params[:event]

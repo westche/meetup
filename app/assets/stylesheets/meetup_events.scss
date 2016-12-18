@@ -36,18 +36,21 @@
     vertical-align: middle;
     text-align: center;
   }
+}
 
-  .search-box {
-    margin: 10px 20px 10px 20px;
+.grid-sizer,
+.grid-item { width: 19%; }
 
-    .radius-input {
-      height: 35px;
-    }
+.search-box {
+  margin: 10px 20px 10px 20px;
 
-    .radius-label {
-      font-size: larger;
-      margin: 10px;
-    }
+  .radius-input {
+    height: 35px;
+  }
+
+  .radius-label {
+    font-size: larger;
+    margin: 10px;
   }
 }
 
