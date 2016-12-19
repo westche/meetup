@@ -1,11 +1,8 @@
 class MeetupEventsController < ApplicationController
   def index
-    @radius_list = [ '10', '20', '30', '40', '50', '60', '70', '80', '90', '100' ]
   end
 
   def search
-    @radius_list = [ '10', '20', '30', '40', '50', '60', '70', '80', '90', '100' ]
-
     if params[:zipcode] == '' || params[:radius] == ''
       @message = 'Please full fill the search box!'
       render :index
@@ -15,12 +12,11 @@ class MeetupEventsController < ApplicationController
 
     zipcode = params[:zipcode]
     radius = params[:radius]
+    keyword = params[:keyword]
 
     if zipcode !~ /\A\d{5}-\d{4}|\A\d{5}\z/
       @message = 'Please full fill the search box!'
       return
-    else
-      city = ''
     end
 
     meetup_api = MeetupApi.new
@@ -31,7 +27,7 @@ class MeetupEventsController < ApplicationController
         fields: 'group_photo,photo_count,photo_sample',
         radius: radius,
         zip: zipcode,
-        city: city
+        text: keyword
     }
     fitness_events = meetup_api.open_events(p)
     @fitness_events = fitness_events['results']
@@ -39,10 +35,10 @@ class MeetupEventsController < ApplicationController
     if @fitness_events != nil
       @fitness_events.each do |event|
         if event['photo_count'] > 0
-          event['photo'] = event['photo_sample'][0]['highres_link']
+          event['photo'] = event['photo_sample'][0]['thumb_link']
         else
           if event['group']['group_photo'].present?
-            event['photo'] = event['group']['group_photo']['highres_link']
+            event['photo'] = event['group']['group_photo']['thumb_link']
           end
         end
       end
@@ -55,7 +51,7 @@ class MeetupEventsController < ApplicationController
         fields: 'group_photo,photo_count,photo_sample',
         radius: radius,
         zip: zipcode,
-        city: city
+        text: keyword
     }
     outdoor_events = meetup_api.open_events(p)
     @outdoor_events = outdoor_events['results']
@@ -63,10 +59,10 @@ class MeetupEventsController < ApplicationController
     if @outdoor_events != nil
       @outdoor_events.each do |event|
         if event['photo_count'] > 0
-          event['photo'] = event['photo_sample'][0]['highres_link']
+          event['photo'] = event['photo_sample'][0]['thumb_link']
         else
           if event['group']['group_photo'].present?
-            event['photo'] = event['group']['group_photo']['highres_link']
+            event['photo'] = event['group']['group_photo']['thumb_link']
           end
         end
       end
@@ -79,7 +75,7 @@ class MeetupEventsController < ApplicationController
         fields: 'group_photo,photo_count,photo_sample',
         radius: radius,
         zip: zipcode,
-        city: city
+        text: keyword
     }
     sports_events = meetup_api.open_events(p)
     @sports_events = sports_events['results']
@@ -87,10 +83,10 @@ class MeetupEventsController < ApplicationController
     if @sports_events != nil
       @sports_events.each do |event|
         if event['photo_count'] > 0
-          event['photo'] = event['photo_sample'][0]['highres_link']
+          event['photo'] = event['photo_sample'][0]['thumb_link']
         else
           if event['group']['group_photo'].present?
-            event['photo'] = event['group']['group_photo']['highres_link']
+            event['photo'] = event['group']['group_photo']['thumb_link']
           end
         end
       end
