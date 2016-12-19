@@ -41,7 +41,7 @@
 
 .grid-sizer,
 .grid-item {
-  width: 345px;
+  width: 19.5%;
   margin-bottom: 10px;
 }
 
@@ -160,11 +160,20 @@
   }
 }
 
+/* Responsive: 1440 and up */
+@media screen and (max-width: 1440px) {
+  .grid-sizer,
+  .grid-item {
+    width: 19.4%;
+    margin-bottom: 10px;
+  }
+}
+
 /* Responsive: 1024 and up */
 @media screen and (max-width: 1024px) {
   .grid-sizer,
   .grid-item {
-    width: 325px;
+    width: 32.4%;
     margin-bottom: 10px;
   }
 }
@@ -172,7 +181,7 @@
 @media screen and (max-width: 768px) {
   .grid-sizer,
   .grid-item {
-    width: 32%;
+    width: 32.4%;
     margin-bottom: 10px;
   }
 
