@@ -39,10 +39,10 @@ class MeetupEventsController < ApplicationController
     if @fitness_events != nil
       @fitness_events.each do |event|
         if event['photo_count'] > 0
-          event['photo'] = event['photo_sample'][0]['photo_link']
+          event['photo'] = event['photo_sample'][0]['highres_link']
         else
           if event['group']['group_photo'].present?
-            event['photo'] = event['group']['group_photo']['photo_link']
+            event['photo'] = event['group']['group_photo']['highres_link']
           end
         end
       end
@@ -63,10 +63,10 @@ class MeetupEventsController < ApplicationController
     if @outdoor_events != nil
       @outdoor_events.each do |event|
         if event['photo_count'] > 0
-          event['photo'] = event['photo_sample'][0]['photo_link']
+          event['photo'] = event['photo_sample'][0]['highres_link']
         else
           if event['group']['group_photo'].present?
-            event['photo'] = event['group']['group_photo']['photo_link']
+            event['photo'] = event['group']['group_photo']['highres_link']
           end
         end
       end
@@ -87,10 +87,10 @@ class MeetupEventsController < ApplicationController
     if @sports_events != nil
       @sports_events.each do |event|
         if event['photo_count'] > 0
-          event['photo'] = event['photo_sample'][0]['photo_link']
+          event['photo'] = event['photo_sample'][0]['highres_link']
         else
           if event['group']['group_photo'].present?
-            event['photo'] = event['group']['group_photo']['photo_link']
+            event['photo'] = event['group']['group_photo']['highres_link']
           end
         end
       end
@@ -113,10 +113,10 @@ class MeetupEventsController < ApplicationController
 
     if @detailed_event != nil
       if @detailed_event['photo_count'] > 0
-        @detailed_event['photo'] = @detailed_event['photo_sample'][0]['photo_link']
+        @detailed_event['photo'] = @detailed_event['photo_sample'][0]['highres_link']
       else
         if @detailed_event['group']['group_photo'].present?
-          @detailed_event['photo'] = @detailed_event['group']['group_photo']['photo_link']
+          @detailed_event['photo'] = @detailed_event['group']['group_photo']['highres_link']
         end
       end
     end

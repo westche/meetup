@@ -10,25 +10,31 @@
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse nav-search-from" id="bs-example-navbar-collapse-1">
-      <%= simple_form_for :filter_options, :url => url_for(:action => 'search', :controller => 'meetup_events'), html: { class: "form-inline search-form" } do |f| %>
-          <div class="form-group search-box">
-            <%= f.input_field :zipcode, class: 'form-control', placeholder: 'Zipcode' %>
-          </div>
-          <div class="form-group search-box">
-            <span class="radius-label">Radius : </span>
-            <%= f.select :radius, @radius_list, selected: '50', class: 'radius-input' %>
-            <span class="radius-label">miles</span>
-          </div>
-          <div class="form-group search-box">
-            <%= f.input_field :keyword, class: 'form-control', placeholder: 'Filter' %>
-          </div>
-          <div class="form-group search-box">
-            <button type="submit" class="search-button btn btn-success">
-              <i class="glyphicon glyphicon-search"></i>
-              <span>Search</span>
-            </button>
-          </div>
-      <% end %>
+      <div class="form-inline search-form">
+        <div class="form-group search-box">
+          <input type="text" id="zipcode" class="form-control" placeholder="Zipcode">
+        </div>
+        <div class="form-group search-box">
+          <select name="radius" id="radius" class="radius-input" onChange="changeRadius(this)">
+            <option value='10'>Radius : 10 miles</option>
+            <option value='20'>Radius : 20 miles</option>
+            <option value='30'>Radius : 30 miles</option>
+            <option value='40'>Radius : 40 miles</option>
+            <option value='50' selected>Radius : 50 miles</option>
+            <option value='60'>Radius : 60 miles</option>
+            <option value='70'>Radius : 70 miles</option>
+            <option value='80'>Radius : 80 miles</option>
+            <option value='90'>Radius : 90 miles</option>
+            <option value='100'>Radius : 100 miles</option>
+          </select>
+        </div>
+        <div class="form-group search-box">
+          <button type="button" class="search-button btn btn-success" onclick="search()">
+            <i class="glyphicon glyphicon-search"></i>
+            <span>Search</span>
+          </button>
+        </div>
+      </div>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -113,4 +119,18 @@
         window.location=$(this).find("a").attr("href"); return false;
     });
 
+    /*Form Submit*/
+    var radius = 50;
+    var zipcode = '90001';
+
+    function changeRadius(x){
+        radius = x.value;
+    }
+
+    function search() {
+        var zipcode = document.getElementById("zipcode").value;
+        var referrer = window.location.href.match(/^.*\//);
+        var redirect_url = referrer + 'search?zipcode=' + zipcode + '&radius=' + radius;
+        window.location = redirect_url;
+    }
 </script>
