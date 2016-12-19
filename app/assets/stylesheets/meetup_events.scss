@@ -181,6 +181,14 @@
     margin-bottom: 10px;
   }
 }
+
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    padding-top: 14px !important;
+    padding-bottom: 48px;
+  }
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (max-width: 768px) {
   .grid-sizer,
@@ -415,4 +423,8 @@
 .jumbotron.center {
    opacity: 0.95;
    align-content: center;
+}
+
+.banner {
+  width: 200px;
 }
