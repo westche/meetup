@@ -4,7 +4,7 @@
         <div class="event-container">
             <div class="event-list-container">
               <div class="row event-listing clearfix doc-padding">
-                <div>
+                <div class="detail-event-header">
                   <span class="event-time"><%= Time.at(@detailed_event['time']/1000).strftime("%B %e, %Y at %I:%M %p") %></span>
                   <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => @detailed_event }, class: "join-button btn btn-success" %>
                 </div>
