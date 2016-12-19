@@ -371,4 +371,8 @@
 .jumbotron.center {
    background: rgb(200, 54, 54); /* This is for ie8 and below */
    background: rgba(200, 54, 54, 0.5);
+   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+   min-height: 100vh; /* These two lines are counted as one :-)       */
+   display: flex;
+   align-items: center;
 }
