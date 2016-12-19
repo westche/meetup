@@ -137,13 +137,22 @@
 <script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
 <script>
     var grid = document.querySelector('.grid');
-    var msnry = new Masonry( grid, {
-//        // options...
-//        columnWidth: 20,
-//        fitWidth: true,
-        itemSelector: '.grid-item',
-        gutter: 10
+
+    $(window).load(function(){
+        $('.grid').masonry({
+            // options...
+            itemSelector: '.grid-item',
+            gutter: 10
+        });
     });
+
+//    var msnry = new Masonry( grid, {
+////        // options...
+////        columnWidth: 20,
+////        fitWidth: true,
+//        itemSelector: '.grid-item',
+//        gutter: 10
+//    });
 
     $("div.grid-item").click(function() {
         window.location=$(this).find("a").attr("href"); return false;
