@@ -54,7 +54,16 @@
                   <% end %>
                   <p class="event-name"><%= fitness_event['name'] %></p>
                 </div>
-                <span class="glyphicon glyphicon-user"> <%= fitness_event['yes_rsvp_count'] %></span>
+                <div class="row">
+                  <div class="col-sm-3 col-xs-3">
+                    <span class="glyphicon glyphicon-heart"></span>
+                    <%= fitness_event['yes_rsvp_count'] %>
+                  </div>
+                  <div class="col-sm-9 col-xs-9 created-time">
+                    <span class="glyphicon glyphicon-time"></span>
+                    <%= Time.at(fitness_event['time']/1000).strftime("%b %e, %I:%M %p") %>
+                  </div>
+                </div>
               </div>
             </div>
         <% end %>

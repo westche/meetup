@@ -75,6 +75,10 @@
     border-radius: 10px;
     padding: 15px;
 
+    .created-time {
+      text-align: right;
+    }
+
     .event-listing {
       border-width: 0;
       padding: 0 16px 0;
@@ -101,8 +105,15 @@
         display: flex;
       }
 
+      .detail-event-name {
+        font-size: 35px;
+        text-align: center;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+
       .event-name {
-        font-size: 15px;
+        font-size: 17px;
         text-align: center;
         margin-top: 10px;
         /* font-weight: bold; */
@@ -213,8 +224,15 @@
           display: flex;
         }
 
+        .detail-event-name {
+          font-size: 25px;
+          text-align: center;
+          margin-top: 10px;
+          font-weight: bold;
+        }
+
         .event-name {
-          font-size: 15px;
+          font-size: 16px;
           text-align: center;
           margin-top: 10px;
           /* font-weight: bold; */
@@ -322,8 +340,15 @@
           display: block;
         }
 
+        .detail-event-name {
+          font-size: 25px;
+          text-align: center;
+          margin-top: 10px;
+          font-weight: bold;
+        }
+
         .event-name {
-          font-size: 15px;
+          font-size: 16px;
           text-align: center;
           margin-top: 10px;
           /* font-weight: bold; */
@@ -357,7 +382,7 @@
 
       .doc-content, .doc-controls, .doc-padding {
         //border-bottom: 1px solid transparent;
-        padding: 16px 16px 0;
+        padding: 16px 0;
       }
     }
 
