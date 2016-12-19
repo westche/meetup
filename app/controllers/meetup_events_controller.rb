@@ -1,23 +1,27 @@
+class Radius < ApplicationController
+  RADIUS = [
+      ['Radius : 10 miles', '10'],
+      ['Radius : 20 miles', '20'],
+      ['Radius : 30 miles', '30'],
+      ['Radius : 40 miles', '40'],
+      ['Radius : 50 miles', '50'],
+      ['Radius : 60 miles', '60'],
+      ['Radius : 70 miles', '70'],
+      ['Radius : 80 miles', '80'],
+      ['Radius : 90 miles', '90'],
+      ['Radius : 100 miles', '100']
+  ].freeze
+end
+
 class MeetupEventsController < ApplicationController
   def index
+    @radius = 50
   end
 
   def search
-    if params[:zipcode] == '' || params[:radius] == ''
-      @message = 'Please full fill the search box!'
-      render :index
-      # redirect_to
-      return
-    end
-
-    zipcode = params[:zipcode]
-    radius = params[:radius]
-    keyword = params[:keyword]
-
-    if zipcode !~ /\A\d{5}-\d{4}|\A\d{5}\z/
-      @message = 'Please full fill the search box!'
-      return
-    end
+    @zipcode = params[:zipcode]
+    @radius = params[:radius]
+    @keyword = params[:keyword]
 
     meetup_api = MeetupApi.new
     p = {
@@ -25,9 +29,9 @@ class MeetupEventsController < ApplicationController
         format: 'json',
         page: '20',
         fields: 'group_photo,photo_count,photo_sample',
-        radius: radius,
-        zip: zipcode,
-        text: keyword
+        radius: @radius,
+        zip: @zipcode,
+        text: @keyword
     }
     fitness_events = meetup_api.open_events(p)
     @fitness_events = fitness_events['results']
@@ -49,9 +53,9 @@ class MeetupEventsController < ApplicationController
         format: 'json',
         page: '20',
         fields: 'group_photo,photo_count,photo_sample',
-        radius: radius,
-        zip: zipcode,
-        text: keyword
+        radius: @radius,
+        zip: @zipcode,
+        text: @keyword
     }
     outdoor_events = meetup_api.open_events(p)
     @outdoor_events = outdoor_events['results']
@@ -73,9 +77,9 @@ class MeetupEventsController < ApplicationController
         format: 'json',
         page: '20',
         fields: 'group_photo,photo_count,photo_sample',
-        radius: radius,
-        zip: zipcode,
-        text: keyword
+        radius: @radius,
+        zip: @zipcode,
+        text: @keyword
     }
     sports_events = meetup_api.open_events(p)
     @sports_events = sports_events['results']
@@ -95,7 +99,7 @@ class MeetupEventsController < ApplicationController
 
   # meetup_events/detailed_event/:id
   def detailed_event
-    puts params[:event]
+    @radius = 50
     event_id = params[:event]
 
     meetup_api = MeetupApi.new
