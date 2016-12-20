@@ -111,9 +111,10 @@
 
     function search() {
         var zipcode = document.getElementById("zipcode").value;
-        var keyword = document.getElementById("filter").value;
+//        var keyword = document.getElementById("filter").value;
         var referrer = window.location.href.match(/^.*\//);
-        var redirect_url = referrer + 'search?zipcode=' + zipcode + '&radius=' + radius + '&keyword=' + keyword;
+//        var redirect_url = referrer + 'search?zipcode=' + zipcode + '&radius=' + radius + '&keyword=' + keyword;
+        var redirect_url = referrer + 'search?zipcode=' + zipcode + '&radius=' + radius;
         window.location = redirect_url;
     }
 </script>

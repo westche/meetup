@@ -24,15 +24,25 @@ class MeetupEventsController < ApplicationController
     @keyword = params[:keyword]
 
     meetup_api = MeetupApi.new
+    # p = {
+    #     category: '9',
+    #     format: 'json',
+    #     page: '20',
+    #     fields: 'group_photo,photo_count,photo_sample',
+    #     radius: @radius,
+    #     zip: @zipcode,
+    #     text: @keyword
+    # }
+
     p = {
         category: '9',
         format: 'json',
         page: '20',
         fields: 'group_photo,photo_count,photo_sample',
         radius: @radius,
-        zip: @zipcode,
-        text: @keyword
+        zip: @zipcode
     }
+
     fitness_events = meetup_api.open_events(p)
     @fitness_events = fitness_events['results']
 
@@ -48,14 +58,23 @@ class MeetupEventsController < ApplicationController
       end
     end
 
+    # p = {
+    #     category: '23',
+    #     format: 'json',
+    #     page: '20',
+    #     fields: 'group_photo,photo_count,photo_sample',
+    #     radius: @radius,
+    #     zip: @zipcode,
+    #     text: @keyword
+    # }
+
     p = {
         category: '23',
         format: 'json',
         page: '20',
         fields: 'group_photo,photo_count,photo_sample',
         radius: @radius,
-        zip: @zipcode,
-        text: @keyword
+        zip: @zipcode
     }
     outdoor_events = meetup_api.open_events(p)
     @outdoor_events = outdoor_events['results']
@@ -72,14 +91,23 @@ class MeetupEventsController < ApplicationController
       end
     end
 
+    # p = {
+    #     category: '32',
+    #     format: 'json',
+    #     page: '20',
+    #     fields: 'group_photo,photo_count,photo_sample',
+    #     radius: @radius,
+    #     zip: @zipcode,
+    #     text: @keyword
+    # }
+
     p = {
         category: '32',
         format: 'json',
         page: '20',
         fields: 'group_photo,photo_count,photo_sample',
         radius: @radius,
-        zip: @zipcode,
-        text: @keyword
+        zip: @zipcode
     }
     sports_events = meetup_api.open_events(p)
     @sports_events = sports_events['results']

@@ -11,9 +11,9 @@
         <div class="form-group search-box">
           <%= select_tag "radius", options_for_select(Radius::RADIUS, @radius), {"onChange" => "changeRadius(this)", class: "form-control"} %>
         </div>
-       <div class="form-group search-box">
-          <input type="text" id="filter" class="form-control input-box" placeholder="Filter" value="<%= @keyword %>"> 
-        </div>
+       <!--<div class="form-group search-box">-->
+          <!--<input type="text" id="filter" class="form-control input-box" placeholder="Filter" value="<%= @keyword %>"> -->
+        <!--</div>-->
         <div class="form-group search-box">
           <button type="button" class="search-button btn btn-success" onclick="search()">
             <i class="glyphicon glyphicon-search"></i>
@@ -38,9 +38,10 @@
 
     function search() {
         var zipcode = document.getElementById("zipcode").value;
-        var keyword = document.getElementById("filter").value;
+//        var keyword = document.getElementById("filter").value;
         var referrer = window.location.href.match(/^.*\//);
-        var redirect_url = referrer + 'meetup_events/search?zipcode=' + zipcode + '&radius=' + radius + '&keyword=' + keyword;
+//        var redirect_url = referrer + 'meetup_events/search?zipcode=' + zipcode + '&radius=' + radius + '&keyword=' + keyword;
+        var redirect_url = referrer + 'meetup_events/search?zipcode=' + zipcode + '&radius=' + radius;
         window.location = redirect_url;
     }
 </script>
