@@ -13,23 +13,25 @@
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse nav-search-from" id="bs-example-navbar-collapse-1">
-      <div class="form-inline search-form">
-        <div class="form-group search-box">
-          <input type="text" id="zipcode" class="form-control input-box" placeholder="Zipcode" value="<%= @zipcode %>">
-        </div>
-        <div class="form-group search-box">
+      <form role="form" data-toggle="validator" action="search">
+        <div class="form-inline search-form">
+          <div class="form-group search-box">
+            <input type="text" name="zipcode" class="form-control input-box" placeholder="Enter Zipcode" value="<%= @zipcode %>"required>
+          </div>
+          <div class="form-group search-box">
             <%= select_tag "radius", options_for_select(Radius::RADIUS, @radius), {"onChange" => "changeRadius(this)", class: "form-control"} %>
+          </div>
+          <!--<div class="form-group search-box">-->
+          <!--<input type="text" id="filter" class="form-control input-box" placeholder="Filter" value="<%= @keyword %>"> -->
+          <!--</div>-->
+          <div class="form-group search-box">
+            <button type="submit" class="search-button btn btn-success">
+              <i class="glyphicon glyphicon-search"></i>
+              <span>Search</span>
+            </button>
+          </div>
         </div>
-        <!--<div class="form-group search-box">-->
-          <!--<input type="text" id="filter" class="form-control input-box" placeholder="Filter" value="<%= @keyword %>">-->
-        <!--</div> -->
-        <div class="form-group search-box">
-          <button type="button" class="search-button btn btn-success" onclick="search()">
-            <i class="glyphicon glyphicon-search"></i>
-            <span>Search</span>
-          </button>
-        </div>
-      </div>
+      </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -126,6 +128,7 @@
   <% end %>
 </div>
 
+<script src="https://cdnjs.com/libraries/1000hz-bootstrap-validator"></script>
 <script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.0.4/jquery.imagesloaded.min.js"></script>
 <script>
@@ -171,14 +174,5 @@
 
     function changeRadius(x){
         radius = x.value;
-    }
-
-    function search() {
-        var zipcode = document.getElementById("zipcode").value;
-//        var keyword = document.getElementById("filter").value;
-        var referrer = window.location.href.match(/^.*\//);
-//        var redirect_url = referrer + 'search?zipcode=' + zipcode + '&radius=' + radius + '&keyword=' + keyword;
-        var redirect_url = referrer + 'search?zipcode=' + zipcode + '&radius=' + radius;
-        window.location = redirect_url;
     }
 </script>
