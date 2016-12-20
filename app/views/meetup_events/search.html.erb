@@ -117,11 +117,11 @@
                 </div>
               </div>
             </div>
-        <% end %>a
+        <% end %>
     <% end %>
   </div>
 
-  <% if !@fitness_events && !@outdoor_events && !@sports_events %>
+  <% if @fitness_events.empty? && @outdoor_events.empty? && @sports_events.empty? %>
       <p class="no-result">No Search Result</p>
   <% end %>
 </div>
@@ -130,21 +130,21 @@
 <script>
     var grid = document.querySelector('.grid');
 
-    $(window).load(function(){
-        $('.grid').masonry({
-            // options...
-            itemSelector: '.grid-item',
-            gutter: 10
-        });
-    });
-
-//    var msnry = new Masonry( grid, {
-////        // options...
-////        columnWidth: 20,
-////        fitWidth: true,
-//        itemSelector: '.grid-item',
-//        gutter: 10
+//    $(window).load(function(){
+//        $('.grid').masonry({
+//            // options...
+//            itemSelector: '.grid-item',
+//            gutter: 10
+//        });
 //    });
+
+    var msnry = new Masonry( grid, {
+//        // options...
+//        columnWidth: 20,
+//        fitWidth: true,
+        itemSelector: '.grid-item',
+        gutter: 10
+    });
 
     $("div.grid-item").click(function() {
         window.location=$(this).find("a").attr("href"); return false;
