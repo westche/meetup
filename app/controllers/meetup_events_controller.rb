@@ -127,7 +127,8 @@ class MeetupEventsController < ApplicationController
 
   # meetup_events/detailed_event/:id
   def detailed_event
-    @radius = 50
+    @radius = params[:radius]
+    @zipcode = params[:zip]
     event_id = params[:event]
 
     meetup_api = MeetupApi.new

@@ -42,7 +42,7 @@
         <% @fitness_events.each do |fitness_event| %>
             <div class="grid-item">
               <div class="event-list-container">
-                <%= link_to "Register for event", {:controller => "meetup_events", :action => "detailed_event", :event => fitness_event['id'] }, class: "join-button btn btn-success hidden" %>
+                <%= link_to "Register for event", {:controller => "meetup_events", :action => "detailed_event", :event => fitness_event['id'], :zip => @zipcode, :radius => @radius }, class: "join-button btn btn-success hidden" %>
                 <div class="row event-listing clearfix doc-padding">
                   <% if fitness_event['photo'] %>
                       <div class="">
@@ -70,7 +70,7 @@
         <% @outdoor_events.each do |event| %>
             <div class="grid-item">
               <div class="event-list-container">
-                <%= link_to "Register for event", {:controller => "meetup_events", :action => "detailed_event", :event => event['id'] }, class: "join-button btn btn-success hidden" %>
+                <%= link_to "Register for event", {:controller => "meetup_events", :action => "detailed_event", :event => event['id'], :zip => @zipcode, :radius => @radius }, class: "join-button btn btn-success hidden" %>
                 <div class="row event-listing clearfix doc-padding">
                   <% if event['photo'] %>
                       <div class="">
@@ -98,7 +98,7 @@
         <% @sports_events.each do |event| %>
             <div class="grid-item">
               <div class="event-list-container">
-                <%= link_to "Register for event", {:controller => "meetup_events", :action => "detailed_event", :event => event['id'] }, class: "join-button btn btn-success hidden" %>
+                <%= link_to "Register for event", {:controller => "meetup_events", :action => "detailed_event", :event => event['id'], :zip => @zipcode, :radius => @radius }, class: "join-button btn btn-success hidden" %>
                 <div class="row event-listing clearfix doc-padding">
                   <% if event['photo'] %>
                       <div class="">
@@ -167,10 +167,6 @@
     $("div.grid-item").click(function() {
         window.location=$(this).find("a").attr("href"); return false;
     });
-
-    /*Form Submit*/
-    var radius = 50;
-    var zipcode = '90001';
 
     function changeRadius(x){
         radius = x.value;
