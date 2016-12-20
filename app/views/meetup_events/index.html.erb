@@ -6,7 +6,7 @@
           <img src="../images/logo.png" class="banner">
         </div>
         <div class="form-group search-box">
-          <input type="text" id="zipcode" class="form-control" placeholder="Enter Zipcode">
+          <input type="text" id="zipcode" class="form-control input-box" placeholder="Enter Zipcode">
         </div>
         <div class="form-group search-box">
           <%= select_tag "radius", options_for_select(Radius::RADIUS, @radius), {"onChange" => "changeRadius(this)", class: "form-control"} %>

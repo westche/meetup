@@ -45,6 +45,12 @@
   margin-bottom: 10px;
 }
 
+.logo {
+  height: 100%;
+  padding: 0 0 0 50px;
+  width: auto;
+}
+
 .search-box {
   margin: 10px 20px 10px 20px;
 
@@ -55,10 +61,6 @@
   .input-box {
     text-align: right;
   }
-}
-
-.nav-search-from {
-  margin-bottom: 10px;
 }
 
 .content {
@@ -197,11 +199,26 @@
     margin-bottom: 10px;
   }
 
+  .logo {
+    height: 100%;
+    padding: 0 0 0 15px;
+    width: auto;
+  }
+
+  .nav-search-from {
+    margin-bottom: 0;
+  }
+
   .search-box {
     margin: 10px 10px 10px 10px;
 
     .radius-input {
       height: 35px;
+    }
+
+    .input-box {
+      text-align: right;
+      width: 120px !important;
     }
   }
 
@@ -308,6 +325,24 @@
   .grid-item {
     width: 100%;
     margin-bottom: 10px;
+  }
+
+  .logo {
+    height: 100%;
+    width: auto;
+  }
+
+  .search-box {
+    margin: 10px 10px 10px 10px;
+
+    .radius-input {
+      height: 35px;
+    }
+
+    .input-box {
+      text-align: right;
+      width: 100% !important;
+    }
   }
 
   .search-button {
