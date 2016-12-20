@@ -20,9 +20,9 @@
         <div class="form-group search-box">
             <%= select_tag "radius", options_for_select(Radius::RADIUS, @radius), {"onChange" => "changeRadius(this)", class: "form-control"} %>
         </div>
-        <div class="form-group search-box">
-          <input type="text" id="filter" class="form-control input-box" placeholder="Filter" value="<%= @keyword %>">
-        </div> 
+        <!--<div class="form-group search-box">-->
+          <!--<input type="text" id="filter" class="form-control input-box" placeholder="Filter" value="<%= @keyword %>">-->
+        <!--</div> -->
         <div class="form-group search-box">
           <button type="button" class="search-button btn btn-success" onclick="search()">
             <i class="glyphicon glyphicon-search"></i>
@@ -127,9 +127,10 @@
 </div>
 
 <script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.0.4/jquery.imagesloaded.min.js"></script>
 <script>
-    var grid = document.querySelector('.grid');
-
+//    var grid = document.querySelector('.grid');
+//
 //    $(window).load(function(){
 //        $('.grid').masonry({
 //            // options...
@@ -138,13 +139,27 @@
 //        });
 //    });
 
-    var msnry = new Masonry( grid, {
-//        // options...
-//        columnWidth: 20,
-//        fitWidth: true,
-        itemSelector: '.grid-item',
-        gutter: 10
+    $(window).ready(function(){
+        // init Masonry
+        var $grid = $('.grid').masonry({
+            // options...
+            itemSelector: '.grid-item',
+            gutter: 10
+        });
+
+        // layout Masonry after each image loads
+        $grid.imagesLoaded().progress( function() {
+            $grid.masonry('layout');
+        });
     });
+
+//    var msnry = new Masonry( grid, {
+////        // options...
+////        columnWidth: 20,
+////        fitWidth: true,
+//        itemSelector: '.grid-item',
+//        gutter: 10
+//    });
 
     $("div.grid-item").click(function() {
         window.location=$(this).find("a").attr("href"); return false;
