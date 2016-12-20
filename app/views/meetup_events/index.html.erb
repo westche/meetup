@@ -11,9 +11,9 @@
         <div class="form-group search-box">
           <%= select_tag "radius", options_for_select(Radius::RADIUS, @radius), {"onChange" => "changeRadius(this)", class: "form-control"} %>
         </div>
-        <div class="form-group search-box">
+      <!--  <div class="form-group search-box">
           <input type="text" id="filter" class="form-control input-box" placeholder="Filter" value="<%= @keyword %>">
-        </div>
+        </div>-->
         <div class="form-group search-box">
           <button type="button" class="search-button btn btn-success" onclick="search()">
             <i class="glyphicon glyphicon-search"></i>
