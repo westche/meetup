@@ -68,28 +68,28 @@ class MeetupEventsController < ApplicationController
     #     text: @keyword
     # }
 
-    # p = {
-    #     category: '23',
-    #     format: 'json',
-    #     page: '20',
-    #     fields: 'group_photo,photo_count,photo_sample',
-    #     radius: @radius,
-    #     zip: @zipcode
-    # }
-    # outdoor_events = meetup_api.open_events(p)
-    # @outdoor_events = outdoor_events['results']
-    #
-    # if @outdoor_events != nil
-    #   @outdoor_events.each do |event|
-    #     if event['photo_count'] > 0
-    #       event['photo'] = event['photo_sample'][0]['highres_link']
-    #     else
-    #       if event['group']['group_photo'].present?
-    #         event['photo'] = event['group']['group_photo']['highres_link']
-    #       end
-    #     end
-    #   end
-    # end
+    p = {
+        category: '23',
+        format: 'json',
+        page: '10',
+        fields: 'group_photo,photo_count,photo_sample',
+        radius: @radius,
+        zip: @zipcode
+    }
+    outdoor_events = meetup_api.open_events(p)
+    @outdoor_events = outdoor_events['results']
+
+    if @outdoor_events != nil
+      @outdoor_events.each do |event|
+        if event['photo_count'] > 0
+          event['photo'] = event['photo_sample'][0]['highres_link']
+        else
+          if event['group']['group_photo'].present?
+            event['photo'] = event['group']['group_photo']['highres_link']
+          end
+        end
+      end
+    end
 
     # p = {
     #     category: '32',

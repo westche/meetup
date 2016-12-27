@@ -47,11 +47,11 @@
                   <p class="event-name"><%= fitness_event['name'] %></p>
                   <% if fitness_event['photo'] %>
                       <div class="">
-                        <%= image_tag fitness_event['photo'], :class => "event_photo" %>
+                        <%= image_tag fitness_event['photo'], :class => "event_photo", :title => fitness_event['description'] %>
                       </div>
                   <% end %>
                 </div>
-                <div class="row">
+                <div class="row heart-time">
                   <div class="col-sm-3 col-xs-3">
                     <span class="glyphicon glyphicon-heart"></span>
                     <%= fitness_event['yes_rsvp_count'] %>
@@ -94,7 +94,7 @@
                   <p class="event-name"><%= event['name'] %></p>
                   <% if event['photo'] %>
                       <div class="">
-                        <%= image_tag event['photo'], :class => "event_photo" %>
+                        <%= image_tag event['photo'], :class => "event_photo", :title => event['description'] %>
                       </div>
                   <% end %>
                 </div>
@@ -141,7 +141,7 @@
                   <p class="event-name"><%= event['name'] %></p>
                   <% if event['photo'] %>
                       <div class="">
-                        <%= image_tag event['photo'], :class => "event_photo" %>
+                        <%= image_tag event['photo'], :class => "event_photo", :title => event['description'] %>
                       </div>
                   <% end %>
                 </div>

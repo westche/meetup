@@ -59,6 +59,10 @@
   text-align: center;
 }
 
+.heart-time {
+  color: grey;
+}
+
 .search-box {
   margin: 10px 20px 10px 20px;
 
@@ -113,6 +117,7 @@
         width: 100%;
         margin: 0 0 10px;
         /* height: 50%; */
+        border-radius: 8px;
       }
 
       .event-content {
