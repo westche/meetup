@@ -44,12 +44,12 @@
               <div class="event-list-container">
                 <%= link_to "Register for event", {:controller => "meetup_events", :action => "detailed_event", :event => fitness_event['id'], :zip => @zipcode, :radius => @radius }, class: "join-button btn btn-success hidden" %>
                 <div class="row event-listing clearfix doc-padding">
+                  <p class="event-name"><%= fitness_event['name'] %></p>
                   <% if fitness_event['photo'] %>
                       <div class="">
                         <%= image_tag fitness_event['photo'], :class => "event_photo" %>
                       </div>
                   <% end %>
-                  <p class="event-name"><%= fitness_event['name'] %></p>
                 </div>
                 <div class="row">
                   <div class="col-sm-3 col-xs-3">
@@ -62,7 +62,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-12 col-xs-12">
+                  <div class="col-sm-12 col-xs-12 location">
                     <% if fitness_event['venue'] %>
                         <i class="glyphicon glyphicon-map-marker"></i>
                         <%= fitness_event['venue']['address_1'] %>
@@ -91,12 +91,12 @@
               <div class="event-list-container">
                 <%= link_to "Register for event", {:controller => "meetup_events", :action => "detailed_event", :event => event['id'], :zip => @zipcode, :radius => @radius }, class: "join-button btn btn-success hidden" %>
                 <div class="row event-listing clearfix doc-padding">
+                  <p class="event-name"><%= event['name'] %></p>
                   <% if event['photo'] %>
                       <div class="">
                         <%= image_tag event['photo'], :class => "event_photo" %>
                       </div>
                   <% end %>
-                  <p class="event-name"><%= event['name'] %></p>
                 </div>
                 <div class="row">
                   <div class="col-sm-3 col-xs-3">
@@ -109,7 +109,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-12 col-xs-12">
+                  <div class="col-sm-12 col-xs-12 location">
                     <% if event['venue'] %>
                         <i class="glyphicon glyphicon-map-marker"></i>
                         <%= event['venue']['address_1'] %>
@@ -138,12 +138,12 @@
               <div class="event-list-container">
                 <%= link_to "Register for event", {:controller => "meetup_events", :action => "detailed_event", :event => event['id'], :zip => @zipcode, :radius => @radius }, class: "join-button btn btn-success hidden" %>
                 <div class="row event-listing clearfix doc-padding">
+                  <p class="event-name"><%= event['name'] %></p>
                   <% if event['photo'] %>
                       <div class="">
                         <%= image_tag event['photo'], :class => "event_photo" %>
                       </div>
                   <% end %>
-                  <p class="event-name"><%= event['name'] %></p>
                 </div>
                 <div class="row">
                   <div class="col-sm-3 col-xs-3">
@@ -156,7 +156,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-12 col-xs-12">
+                  <div class="col-sm-12 col-xs-12 location">
                     <% if event['venue'] %>
                         <i class="glyphicon glyphicon-map-marker"></i>
                         <%= event['venue']['address_1'] %>
