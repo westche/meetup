@@ -37,7 +37,7 @@ class MeetupEventsController < ApplicationController
     p = {
         category: '9',
         format: 'json',
-        page: '30',
+        page: '50',
         fields: 'group_photo,photo_count,photo_sample',
         text_format: 'plain',
         radius: @radius,
@@ -81,7 +81,7 @@ class MeetupEventsController < ApplicationController
     p = {
         category: '23',
         format: 'json',
-        page: '10',
+        page: '20',
         fields: 'group_photo,photo_count,photo_sample',
         text_format: 'plain',
         radius: @radius,
@@ -124,7 +124,7 @@ class MeetupEventsController < ApplicationController
     p = {
         category: '32',
         format: 'json',
-        page: '30',
+        page: '50',
         fields: 'group_photo,photo_count,photo_sample',
         text_format: 'plain',
         radius: @radius,
