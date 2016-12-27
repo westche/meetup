@@ -70,15 +70,15 @@
                   </div>
                 </div>
                 <div class="row">
-                  <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => fitness_event }, class: "join-button btn btn-success pull-right", target: "_blank" %>
-                </div>
-                <div class="row">
                   <div class="col-sm-12 col-xs-12">
                     <% if fitness_event['group'] %>
                         <i class="fa fa-users"></i>
                         <%= fitness_event['group']['name'] %>
                     <% end %>
                   </div>
+                </div>
+                <div class="row">
+                  <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => fitness_event }, class: "join-button btn btn-success pull-right", target: "_blank" %>
                 </div>
               </div>
             </div>
@@ -117,15 +117,15 @@
                   </div>
                 </div>
                 <div class="row">
-                  <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => event }, class: "join-button btn btn-success pull-right", target: "_blank" %>
-                </div>
-                <div class="row">
                   <div class="col-sm-12 col-xs-12">
                     <% if event['group'] %>
                         <i class="fa fa-users"></i>
                         <%= event['group']['name'] %>
                     <% end %>
                   </div>
+                </div>
+                <div class="row">
+                  <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => event }, class: "join-button btn btn-success pull-right", target: "_blank" %>
                 </div>
               </div>
             </div>
@@ -164,15 +164,15 @@
                   </div>
                 </div>
                 <div class="row">
-                  <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => event }, class: "join-button btn btn-success pull-right", target: "_blank" %>
-                </div>
-                <div class="row">
                   <div class="col-sm-12 col-xs-12">
                     <% if event['group'] %>
                         <i class="fa fa-users"></i>
                         <%= event['group']['name'] %>
                     <% end %>
                   </div>
+                </div>
+                <div class="row">
+                  <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => event }, class: "join-button btn btn-success pull-right", target: "_blank" %>
                 </div>
               </div>
             </div>
