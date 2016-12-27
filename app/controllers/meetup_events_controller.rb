@@ -39,6 +39,7 @@ class MeetupEventsController < ApplicationController
         format: 'json',
         page: '30',
         fields: 'group_photo,photo_count,photo_sample',
+        text_format: 'plain',
         radius: @radius,
         zip: @zipcode
     }
@@ -53,6 +54,15 @@ class MeetupEventsController < ApplicationController
         else
           if event['group']['group_photo'].present?
             event['photo'] = event['group']['group_photo']['highres_link']
+          end
+        end
+
+        if event['description'] != nil
+          length = event['description'].length
+
+          if length > 120
+            description = event['description']
+            event['desc'] = description[0, 120] + '...'
           end
         end
       end
@@ -73,6 +83,7 @@ class MeetupEventsController < ApplicationController
         format: 'json',
         page: '10',
         fields: 'group_photo,photo_count,photo_sample',
+        text_format: 'plain',
         radius: @radius,
         zip: @zipcode
     }
@@ -86,6 +97,15 @@ class MeetupEventsController < ApplicationController
         else
           if event['group']['group_photo'].present?
             event['photo'] = event['group']['group_photo']['highres_link']
+          end
+        end
+
+        if event['description'] != nil
+          length = event['description'].length
+
+          if length > 120
+            description = event['description']
+            event['desc'] = description[0, 120] + '...'
           end
         end
       end
@@ -106,6 +126,7 @@ class MeetupEventsController < ApplicationController
         format: 'json',
         page: '30',
         fields: 'group_photo,photo_count,photo_sample',
+        text_format: 'plain',
         radius: @radius,
         zip: @zipcode
     }
@@ -119,6 +140,15 @@ class MeetupEventsController < ApplicationController
         else
           if event['group']['group_photo'].present?
             event['photo'] = event['group']['group_photo']['highres_link']
+          end
+        end
+
+        if event['description'] != nil
+          length = event['description'].length
+
+          if length > 120
+            description = event['description']
+            event['desc'] = description[0, 120] + '...'
           end
         end
       end

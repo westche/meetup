@@ -47,7 +47,7 @@
                   <p class="event-name"><%= fitness_event['name'] %></p>
                   <% if fitness_event['photo'] %>
                       <div class="">
-                        <%= image_tag fitness_event['photo'], :class => "event_photo", :title => fitness_event['description'] %>
+                        <%= image_tag fitness_event['photo'], :class => "event_photo" %>
                       </div>
                   <% end %>
                 </div>
@@ -78,6 +78,13 @@
                   </div>
                 </div>
                 <div class="row">
+                  <div class="col-sm-12 col-xs-12 location">
+                    <% if fitness_event['desc'] %>
+                        <%= fitness_event['desc'] %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="row">
                   <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => fitness_event }, class: "join-button btn btn-success pull-right", target: "_blank" %>
                 </div>
               </div>
@@ -94,7 +101,7 @@
                   <p class="event-name"><%= event['name'] %></p>
                   <% if event['photo'] %>
                       <div class="">
-                        <%= image_tag event['photo'], :class => "event_photo", :title => event['description'] %>
+                        <%= image_tag event['photo'], :class => "event_photo" %>
                       </div>
                   <% end %>
                 </div>
@@ -121,6 +128,13 @@
                     <% if event['group'] %>
                         <i class="fa fa-users"></i>
                         <%= event['group']['name'] %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-xs-12 location">
+                    <% if event['desc'] %>
+                        <%= event['desc'] %>
                     <% end %>
                   </div>
                 </div>
@@ -141,7 +155,7 @@
                   <p class="event-name"><%= event['name'] %></p>
                   <% if event['photo'] %>
                       <div class="">
-                        <%= image_tag event['photo'], :class => "event_photo", :title => event['description'] %>
+                        <%= image_tag event['photo'], :class => "event_photo" %>
                       </div>
                   <% end %>
                 </div>
@@ -168,6 +182,13 @@
                     <% if event['group'] %>
                         <i class="fa fa-users"></i>
                         <%= event['group']['name'] %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-xs-12 location">
+                    <% if event['desc'] %>
+                        <%= event['desc'] %>
                     <% end %>
                   </div>
                 </div>
