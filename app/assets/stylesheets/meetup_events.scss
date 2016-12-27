@@ -51,6 +51,10 @@
   width: auto;
 }
 
+.join-button {
+  margin: 10px;
+}
+
 .search-box {
   margin: 10px 20px 10px 20px;
 
@@ -240,6 +244,11 @@
       border-radius: 10px;
       padding: 15px;
 
+      //.join-button {
+      //  width: 100%;
+      //  margin: 10px;
+      //}
+
       .event-listing {
         border-width: 0;
         padding: 0 16px 0;
@@ -367,6 +376,11 @@
       border-radius: 10px;
       padding: 15px;
 
+      //.join-button {
+      //  width: 100%;
+      //  margin: 10px;
+      //}
+
       .event-listing {
         border-width: 0;
         padding: 0 16px 0;
@@ -381,10 +395,10 @@
           text-align: center;
         }
 
-        .join-button {
-          width: 100%;
-          margin: 20px 0;
-        }
+        //.join-button {
+        //  width: 100%;
+        //  margin: 20px 0;
+        //}
 
         .event-photo {
           width: 100%;
