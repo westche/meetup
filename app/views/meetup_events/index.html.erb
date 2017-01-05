@@ -12,9 +12,39 @@
             <div class="form-group search-box">
               <%= select_tag "radius", options_for_select(Radius::RADIUS, @radius), {"onChange" => "changeRadius(this)", class: "form-control"} %>
             </div>
-           <!--<div class="form-group search-box">-->
-              <!--<input type="text" id="filter" class="form-control input-box" placeholder="Filter" value="<%= @keyword %>"> -->
-            <!--</div>-->
+            <div class="form-group search-box">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" href="#collapse1">
+                    <img src="../images/advanced.png" class="advanced-search">
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse1" class="panel-collapse collapse advanced-collapse">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="radio">
+                      <label><input type="radio" name="date" value="this_week"> This Week</label>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="radio">
+                      <label><input type="radio" name="date" value="next_week"> Next Week</label>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="radio">
+                      <label><input type="radio" name="date" value="this_month"> This Month</label>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="checkbox">
+                      <input type="text" name="keyword" value="" placeholder="keyword">
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
             <div class="form-group search-box">
               <button type="submit" class="search-button btn btn-success">
                 <i class="glyphicon glyphicon-search"></i>

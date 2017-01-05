@@ -21,18 +21,28 @@ class MeetupEventsController < ApplicationController
   def search
     @zipcode = params[:zipcode]
     @radius = params[:radius]
+    @date = params[:date]
     @keyword = params[:keyword]
 
     meetup_api = MeetupApi.new
-    # p = {
-    #     category: '9',
-    #     format: 'json',
-    #     page: '20',
-    #     fields: 'group_photo,photo_count,photo_sample',
-    #     radius: @radius,
-    #     zip: @zipcode,
-    #     text: @keyword
-    # }
+    today = DateTime.now
+
+    case @date
+      when 'this_week'
+        first_day = Date.commercial(today.cwyear, today.cweek) - 1
+        last_day = Date.commercial(today.cwyear, today.cweek, 6)
+      when 'next_week'
+        first_day = Date.commercial(today.cwyear, today.cweek + 1) - 1
+        last_day = Date.commercial(today.cwyear, today.cweek + 1, 6)
+      when 'this_month'
+        first_day = Date.today.beginning_of_month
+        last_day = Date.today.end_of_month
+      else
+        first_day = Date.today.beginning_of_year
+        last_day = Date.today.end_of_year
+    end
+
+    @time = first_day.strftime('%Q') + ',' + last_day.strftime('%Q')
 
     p = {
         category: '9',
@@ -41,11 +51,14 @@ class MeetupEventsController < ApplicationController
         fields: 'group_photo,photo_count,photo_sample',
         text_format: 'plain',
         radius: @radius,
-        zip: @zipcode
+        zip: @zipcode,
+        time: @time
     }
 
     fitness_events = meetup_api.open_events(p)
     @fitness_events = fitness_events['results']
+
+    @events = []
 
     if @fitness_events != nil
       @fitness_events.each do |event|
@@ -58,6 +71,14 @@ class MeetupEventsController < ApplicationController
         end
 
         if event['description'] != nil
+          if @keyword != nil
+            if (event['description'].include? @keyword) || (event['name'].include? @keyword) || (event['group']['name'].include? @keyword)
+              @events.push(event)
+            end
+          else
+            @events.push(event)
+          end
+
           length = event['description'].length
 
           if length > 120
@@ -68,16 +89,6 @@ class MeetupEventsController < ApplicationController
       end
     end
 
-    # p = {
-    #     category: '23',
-    #     format: 'json',
-    #     page: '20',
-    #     fields: 'group_photo,photo_count,photo_sample',
-    #     radius: @radius,
-    #     zip: @zipcode,
-    #     text: @keyword
-    # }
-
     p = {
         category: '23',
         format: 'json',
@@ -85,7 +96,8 @@ class MeetupEventsController < ApplicationController
         fields: 'group_photo,photo_count,photo_sample',
         text_format: 'plain',
         radius: @radius,
-        zip: @zipcode
+        zip: @zipcode,
+        time: @time
     }
     outdoor_events = meetup_api.open_events(p)
     @outdoor_events = outdoor_events['results']
@@ -101,6 +113,13 @@ class MeetupEventsController < ApplicationController
         end
 
         if event['description'] != nil
+          if @keyword != nil
+            if (event['description'].include? @keyword) || (event['name'].include? @keyword) || (event['group']['name'].include? @keyword)
+              @events.push(event)
+            end
+          else
+            @events.push(event)
+          end
           length = event['description'].length
 
           if length > 120
@@ -111,16 +130,6 @@ class MeetupEventsController < ApplicationController
       end
     end
 
-    # p = {
-    #     category: '32',
-    #     format: 'json',
-    #     page: '20',
-    #     fields: 'group_photo,photo_count,photo_sample',
-    #     radius: @radius,
-    #     zip: @zipcode,
-    #     text: @keyword
-    # }
-
     p = {
         category: '32',
         format: 'json',
@@ -128,7 +137,8 @@ class MeetupEventsController < ApplicationController
         fields: 'group_photo,photo_count,photo_sample',
         text_format: 'plain',
         radius: @radius,
-        zip: @zipcode
+        zip: @zipcode,
+        time: @time
     }
     sports_events = meetup_api.open_events(p)
     @sports_events = sports_events['results']
@@ -144,6 +154,13 @@ class MeetupEventsController < ApplicationController
         end
 
         if event['description'] != nil
+          if @keyword != nil
+            if (event['description'].include? @keyword) || (event['name'].include? @keyword) || (event['group']['name'].include? @keyword)
+              @events.push(event)
+            end
+          else
+            @events.push(event)
+          end
           length = event['description'].length
 
           if length > 120

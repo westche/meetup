@@ -67,7 +67,9 @@
   margin-top: 5px;
   color: gray;
 }
-
+//#collapse1 {
+//  display: none;
+//}
 .search-box {
   margin: 10px 20px 10px 20px;
 
@@ -77,6 +79,15 @@
 
   .input-box {
     text-align: right;
+  }
+
+  .advanced-search {
+    width: 25px;
+  }
+
+  .advanced-collapse {
+    position: absolute;
+    z-index: 9999;
   }
 }
 
@@ -230,6 +241,7 @@
 
   .search-box {
     margin: 10px 10px 10px 10px;
+    text-align: left;
 
     .radius-input {
       height: 35px;
