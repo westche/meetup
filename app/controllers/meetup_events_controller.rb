@@ -13,21 +13,30 @@ class Radius < ApplicationController
   ].freeze
 end
 
+class Period < ApplicationController
+  PERIOD = [
+      ['This Week', 'this_week'],
+      ['Next Week', 'next_week'],
+      ['This Month', 'this_month']
+  ].freeze
+end
+
 class MeetupEventsController < ApplicationController
   def index
     @radius = 50
+    @period = 'this_month'
   end
 
   def search
     @zipcode = params[:zipcode]
     @radius = params[:radius]
-    @date = params[:date]
+    @period = params[:period]
     @keyword = params[:keyword]
 
     meetup_api = MeetupApi.new
     today = DateTime.now
 
-    case @date
+    case @period
       when 'this_week'
         first_day = Date.commercial(today.cwyear, today.cweek) - 1
         last_day = Date.commercial(today.cwyear, today.cweek, 6)
