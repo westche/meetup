@@ -29,14 +29,14 @@
   :-ms-input-placeholder { /* Internet Explorer 10+ */
     direction: rtl;
   }
+}
 
-  .search-form {
-    width: 50%;
-    margin: auto;
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-  }
+.search-form {
+  width: 50%;
+  padding-bottom: 10px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
 }
 
 .grid-sizer,
@@ -47,7 +47,7 @@
 
 .logo {
   height: 100%;
-  padding: 0 0 0 50px;
+  padding: 0 0 0 25px;
   width: auto;
 }
 
