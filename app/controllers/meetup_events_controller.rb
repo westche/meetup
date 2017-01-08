@@ -17,14 +17,15 @@ class Period < ApplicationController
   PERIOD = [
       ['This Week', 'this_week'],
       ['Next Week', 'next_week'],
-      ['This Month', 'this_month']
+      ['This Month', 'this_month'],
+      ['All Events', 'all']
   ].freeze
 end
 
 class MeetupEventsController < ApplicationController
   def index
     @radius = 50
-    @period = 'this_month'
+    @period = 'all'
   end
 
   def search
@@ -46,6 +47,9 @@ class MeetupEventsController < ApplicationController
       when 'this_month'
         first_day = Date.today.beginning_of_month
         last_day = Date.today.end_of_month
+      when 'all'
+        first_day = Date.today.beginning_of_year
+        last_day = Date.today.end_of_year
       else
         first_day = Date.today.beginning_of_year
         last_day = Date.today.end_of_year
