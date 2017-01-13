@@ -26,7 +26,6 @@ class MeetupEventsController < ApplicationController
   def index
     @radius = 50
     @period = 'all'
-    puts 'index function'
   end
 
   def search

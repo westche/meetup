@@ -43,7 +43,7 @@
   <% if @events.empty? %>
       <div class="alert alert-danger alert-dismissable">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>No results found, but you might like these events</strong>
+        <strong>No results found for "<%= @keyword %>", but you might like these events</strong>
       </div>
   <% end %>
   <div class="event-container grid">
