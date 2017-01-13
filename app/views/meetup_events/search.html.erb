@@ -43,8 +43,10 @@
   <% if @events.empty? %>
       <div class="alert alert-danger alert-dismissable">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong align="center">Ah Shucks! There are not any <%= @keyword %> events currently in your area. Check out these other awesome events instead!</strong>
-      </div>
+         <div style="text-align:center">
+        <strong>There are currently not any "<%= @keyword %>" events in your area. Instead, check out some of these other awesome events. </strong>
+        </div>
+        </div>
   <% end %>
   <div class="event-container grid">
     <% if @events %>
