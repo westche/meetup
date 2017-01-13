@@ -26,6 +26,7 @@ class MeetupEventsController < ApplicationController
   def index
     @radius = 50
     @period = 'all'
+    puts 'index function'
   end
 
   def search
@@ -34,154 +35,10 @@ class MeetupEventsController < ApplicationController
     @period = params[:period]
     @keyword = params[:keyword]
 
-    meetup_api = MeetupApi.new
-    today = DateTime.now
+    @events = self.search_events(@zipcode, @radius, @period, @keyword)
 
-    case @period
-      when 'this_week'
-        first_day = Date.commercial(today.cwyear, today.cweek) - 1
-        last_day = Date.commercial(today.cwyear, today.cweek, 6)
-      when 'next_week'
-        first_day = Date.commercial(today.cwyear, today.cweek + 1) - 1
-        last_day = Date.commercial(today.cwyear, today.cweek + 1, 6)
-      when 'this_month'
-        first_day = Date.today.beginning_of_month
-        last_day = Date.today.end_of_month
-      when 'all'
-        first_day = Date.today.beginning_of_year
-        last_day = Date.today.end_of_year
-      else
-        first_day = Date.today.beginning_of_year
-        last_day = Date.today.end_of_year
-    end
-
-    @time = first_day.strftime('%Q') + ',' + last_day.strftime('%Q')
-
-    p = {
-        category: '9',
-        format: 'json',
-        page: '50',
-        fields: 'group_photo,photo_count,photo_sample',
-        text_format: 'plain',
-        radius: @radius,
-        zip: @zipcode,
-        time: @time
-    }
-
-    fitness_events = meetup_api.open_events(p)
-    @fitness_events = fitness_events['results']
-
-    @events = []
-
-    if @fitness_events != nil
-      @fitness_events.each do |event|
-        if event['photo_count'] > 0
-          event['photo'] = event['photo_sample'][0]['highres_link']
-        else
-          if event['group']['group_photo'].present?
-            event['photo'] = event['group']['group_photo']['highres_link']
-          end
-        end
-
-        if event['description'] != nil
-          if @keyword != nil
-            if (event['description'].include? @keyword) || (event['name'].include? @keyword) || (event['group']['name'].include? @keyword)
-              @events.push(event)
-            end
-          else
-            @events.push(event)
-          end
-
-          length = event['description'].length
-
-          if length > 120
-            description = event['description']
-            event['desc'] = description[0, 120] + '...'
-          end
-        end
-      end
-    end
-
-    p = {
-        category: '23',
-        format: 'json',
-        page: '20',
-        fields: 'group_photo,photo_count,photo_sample',
-        text_format: 'plain',
-        radius: @radius,
-        zip: @zipcode,
-        time: @time
-    }
-    outdoor_events = meetup_api.open_events(p)
-    @outdoor_events = outdoor_events['results']
-
-    if @outdoor_events != nil
-      @outdoor_events.each do |event|
-        if event['photo_count'] > 0
-          event['photo'] = event['photo_sample'][0]['highres_link']
-        else
-          if event['group']['group_photo'].present?
-            event['photo'] = event['group']['group_photo']['highres_link']
-          end
-        end
-
-        if event['description'] != nil
-          if @keyword != nil
-            if (event['description'].include? @keyword) || (event['name'].include? @keyword) || (event['group']['name'].include? @keyword)
-              @events.push(event)
-            end
-          else
-            @events.push(event)
-          end
-          length = event['description'].length
-
-          if length > 120
-            description = event['description']
-            event['desc'] = description[0, 120] + '...'
-          end
-        end
-      end
-    end
-
-    p = {
-        category: '32',
-        format: 'json',
-        page: '50',
-        fields: 'group_photo,photo_count,photo_sample',
-        text_format: 'plain',
-        radius: @radius,
-        zip: @zipcode,
-        time: @time
-    }
-    sports_events = meetup_api.open_events(p)
-    @sports_events = sports_events['results']
-
-    if @sports_events != nil
-      @sports_events.each do |event|
-        if event['photo_count'] > 0
-          event['photo'] = event['photo_sample'][0]['highres_link']
-        else
-          if event['group']['group_photo'].present?
-            event['photo'] = event['group']['group_photo']['highres_link']
-          end
-        end
-
-        if event['description'] != nil
-          if @keyword != nil
-            if (event['description'].include? @keyword) || (event['name'].include? @keyword) || (event['group']['name'].include? @keyword)
-              @events.push(event)
-            end
-          else
-            @events.push(event)
-          end
-          length = event['description'].length
-
-          if length > 120
-            description = event['description']
-            event['desc'] = description[0, 120] + '...'
-          end
-        end
-      end
+    if @events.empty?
+      @recommended_events = self.search_events(@zipcode, @radius, @period, '')
     end
   end
 
@@ -215,5 +72,159 @@ class MeetupEventsController < ApplicationController
     puts params[:event]
     selected_event = params[:event]
     redirect_to selected_event[:event_url]
+  end
+
+  def search_events(zipcode, radius, period, keyword)
+    meetup_api = MeetupApi.new
+    today = DateTime.now
+
+    case period
+      when 'this_week'
+        first_day = Date.commercial(today.cwyear, today.cweek) - 1
+        last_day = Date.commercial(today.cwyear, today.cweek, 6)
+      when 'next_week'
+        first_day = Date.commercial(today.cwyear, today.cweek + 1) - 1
+        last_day = Date.commercial(today.cwyear, today.cweek + 1, 6)
+      when 'this_month'
+        first_day = Date.today.beginning_of_month
+        last_day = Date.today.end_of_month
+      when 'all'
+        first_day = Date.today.beginning_of_year
+        last_day = Date.today.end_of_year
+      else
+        first_day = Date.today.beginning_of_year
+        last_day = Date.today.end_of_year
+    end
+
+    time = first_day.strftime('%Q') + ',' + last_day.strftime('%Q')
+
+    p = {
+        category: '9',
+        format: 'json',
+        page: '50',
+        fields: 'group_photo,photo_count,photo_sample',
+        text_format: 'plain',
+        radius: radius,
+        zip: zipcode,
+        time: time
+    }
+
+    fitness_events = meetup_api.open_events(p)
+    fitness_event_result = fitness_events['results']
+
+    search_events = []
+
+    if fitness_event_result != nil
+      fitness_event_result.each do |event|
+        if event['photo_count'] > 0
+          event['photo'] = event['photo_sample'][0]['highres_link']
+        else
+          if event['group']['group_photo'].present?
+            event['photo'] = event['group']['group_photo']['highres_link']
+          end
+        end
+
+        if event['description'] != nil
+          if keyword != nil
+            if (event['description'].include? keyword) || (event['name'].include? keyword) || (event['group']['name'].include? keyword)
+              search_events.push(event)
+            end
+          else
+            search_events.push(event)
+          end
+
+          length = event['description'].length
+
+          if length > 120
+            description = event['description']
+            event['desc'] = description[0, 120] + '...'
+          end
+        end
+      end
+    end
+
+    p = {
+        category: '23',
+        format: 'json',
+        page: '20',
+        fields: 'group_photo,photo_count,photo_sample',
+        text_format: 'plain',
+        radius: radius,
+        zip: zipcode,
+        time: time
+    }
+    outdoor_events = meetup_api.open_events(p)
+    outdoor_event_result = outdoor_events['results']
+
+    if outdoor_event_result != nil
+      outdoor_event_result.each do |event|
+        if event['photo_count'] > 0
+          event['photo'] = event['photo_sample'][0]['highres_link']
+        else
+          if event['group']['group_photo'].present?
+            event['photo'] = event['group']['group_photo']['highres_link']
+          end
+        end
+
+        if event['description'] != nil
+          if keyword != nil
+            if (event['description'].include? keyword) || (event['name'].include? keyword) || (event['group']['name'].include? keyword)
+              search_events.push(event)
+            end
+          else
+            search_events.push(event)
+          end
+          length = event['description'].length
+
+          if length > 120
+            description = event['description']
+            event['desc'] = description[0, 120] + '...'
+          end
+        end
+      end
+    end
+
+    p = {
+        category: '32',
+        format: 'json',
+        page: '50',
+        fields: 'group_photo,photo_count,photo_sample',
+        text_format: 'plain',
+        radius: radius,
+        zip: zipcode,
+        time: time
+    }
+    sports_events = meetup_api.open_events(p)
+    sports_event_result = sports_events['results']
+
+    if sports_event_result != nil
+      sports_event_result.each do |event|
+        if event['photo_count'] > 0
+          event['photo'] = event['photo_sample'][0]['highres_link']
+        else
+          if event['group']['group_photo'].present?
+            event['photo'] = event['group']['group_photo']['highres_link']
+          end
+        end
+
+        if event['description'] != nil
+          if keyword != nil
+            if (event['description'].include? keyword) || (event['name'].include? keyword) || (event['group']['name'].include? keyword)
+              search_events.push(event)
+            end
+          else
+            search_events.push(event)
+          end
+          length = event['description'].length
+
+          if length > 120
+            description = event['description']
+            event['desc'] = description[0, 120] + '...'
+          end
+        end
+      end
+    end
+
+    return search_events
   end
 end

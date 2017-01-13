@@ -40,6 +40,12 @@
 </nav>
 
 <div class="content">
+  <% if @events.empty? %>
+      <div class="alert alert-danger alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>No results found, but you might like these events</strong>
+      </div>
+  <% end %>
   <div class="event-container grid">
     <% if @events %>
         <% @events.each do |event| %>
@@ -95,11 +101,62 @@
             </div>
         <% end %>
     <% end %>
-  </div>
 
-  <% if @events.empty? %>
-      <p class="no-result">No Result Found</p>
-  <% end %>
+    <% if @recommended_events %>
+        <% @recommended_events.each do |event| %>
+            <div class="grid-item">
+              <div class="event-list-container">
+                <%= link_to "Register for event", {:controller => "meetup_events", :action => "detailed_event", :event => event['id'], :zip => @zipcode, :radius => @radius }, class: "join-button btn btn-success hidden" %>
+                <div class="row event-listing clearfix doc-padding">
+                  <p class="event-name"><%= event['name'] %></p>
+                  <% if event['photo'] %>
+                      <div class="">
+                        <%= image_tag event['photo'], :class => "event_photo" %>
+                      </div>
+                  <% end %>
+                </div>
+                <div class="row heart-time">
+                  <div class="col-sm-3 col-xs-3">
+                    <span class="glyphicon glyphicon-heart"></span>
+                    <%= event['yes_rsvp_count'] %>
+                  </div>
+                  <div class="col-sm-9 col-xs-9 created-time">
+                    <span class="glyphicon glyphicon-time"></span>
+                    <%= Time.at(event['time']/1000).strftime("%b %e, %I:%M %p") %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-xs-12 location">
+                    <% if event['venue'] %>
+                        <i class="glyphicon glyphicon-map-marker"></i>
+                        <%= event['venue']['address_1'] %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-xs-12 location">
+                    <% if event['group'] %>
+                        <i class="fa fa-users"></i>
+                        <%= event['group']['name'] %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-xs-12 description">
+                    <% if event['desc'] %>
+                        <i class="fa fa-file-text"></i>
+                        <%= event['desc'] %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="row">
+                  <%= link_to "Register for event", {:controller => "meetup_events", :action => "join", :event => event }, class: "join-button btn btn-success pull-right", target: "_blank" %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+    <% end %>
+  </div>
 </div>
 
 <!--<link rel="stylesheet" href="../stylesheets/dropdowns-enhancement.min.css" />-->
