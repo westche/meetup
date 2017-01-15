@@ -40,13 +40,13 @@
 </nav>
 
 <div class="content">
-  <% if @events.empty? %>
+  <% if @message %>
       <div class="alert alert-danger alert-dismissable">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-         <div style="text-align:center">
-        <strong>There are currently not any "<%= @keyword %>" events in your area. Instead, check out some of these other awesome events. </strong>
+        <div style="text-align:center">
+            <strong><%= @message %></strong>
         </div>
-        </div>
+      </div>
   <% end %>
   <div class="event-container grid">
     <% if @events %>

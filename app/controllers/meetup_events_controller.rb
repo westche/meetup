@@ -34,6 +34,8 @@ class MeetupEventsController < ApplicationController
     @period = params[:period]
     @keyword = params[:keyword]
 
+    # @message = ''
+
     @events = self.search_events(@city, @radius, @period, @keyword)
 
     if @events.empty?
@@ -76,20 +78,25 @@ class MeetupEventsController < ApplicationController
   def search_events(cityname, radius, period, keyword)
     meetup_api = MeetupApi.new
     search_events = []
+    zipcode = cityname
 
-    p = {
-        country: 'US',
-        query: cityname,
-        page: '20'
-    }
+    if !is_number?( cityname )
+      p = {
+          country: 'US',
+          query: cityname,
+          page: '20'
+      }
 
-    cities = meetup_api.cities(p)
-    cities_result = cities['results']
+      cities = meetup_api.cities(p)
+      cities_result = cities['results']
 
-    if cities_result.any?
-      city = cities_result[0]
-    else
-      return search_events
+      if cities_result.any?
+        city = cities_result[0]
+        zipcode = city['zip']
+      else
+        @message = 'Please retype your city or zipcode'
+        return search_events
+      end
     end
 
     today = DateTime.now
@@ -121,14 +128,12 @@ class MeetupEventsController < ApplicationController
         fields: 'group_photo,photo_count,photo_sample',
         text_format: 'plain',
         radius: radius,
-        zip: city['zip'],
+        zip: zipcode,
         time: time
     }
 
     fitness_events = meetup_api.open_events(p)
     fitness_event_result = fitness_events['results']
-
-    # search_events = []
 
     if fitness_event_result != nil
       fitness_event_result.each do |event|
@@ -166,7 +171,7 @@ class MeetupEventsController < ApplicationController
         fields: 'group_photo,photo_count,photo_sample',
         text_format: 'plain',
         radius: radius,
-        zip: city.zip,
+        zip: zipcode,
         time: time
     }
     outdoor_events = meetup_api.open_events(p)
@@ -207,7 +212,7 @@ class MeetupEventsController < ApplicationController
         fields: 'group_photo,photo_count,photo_sample',
         text_format: 'plain',
         radius: radius,
-        zip: city.zip,
+        zip: zipcode,
         time: time
     }
     sports_events = meetup_api.open_events(p)
@@ -241,6 +246,14 @@ class MeetupEventsController < ApplicationController
       end
     end
 
+    if search_events.empty?
+      @message = 'There are currently not any "' + keyword + '"events in your area. Instead, check out some of these other awesome events. '
+    end
+
     return search_events
+  end
+
+  def is_number? string
+    true if Float(string) rescue false
   end
 end
