@@ -29,22 +29,22 @@ class MeetupEventsController < ApplicationController
   end
 
   def search
-    @zipcode = params[:zipcode]
+    @city = params[:city]
     @radius = params[:radius]
     @period = params[:period]
     @keyword = params[:keyword]
 
-    @events = self.search_events(@zipcode, @radius, @period, @keyword)
+    @events = self.search_events(@city, @radius, @period, @keyword)
 
     if @events.empty?
-      @recommended_events = self.search_events(@zipcode, @radius, @period, '')
+      @recommended_events = self.search_events(@city, @radius, @period, '')
     end
   end
 
   # meetup_events/detailed_event/:id
   def detailed_event
     @radius = params[:radius]
-    @zipcode = params[:zip]
+    @city = params[:city]
     event_id = params[:event]
 
     meetup_api = MeetupApi.new
@@ -73,8 +73,25 @@ class MeetupEventsController < ApplicationController
     redirect_to selected_event[:event_url]
   end
 
-  def search_events(zipcode, radius, period, keyword)
+  def search_events(cityname, radius, period, keyword)
     meetup_api = MeetupApi.new
+    search_events = []
+
+    p = {
+        country: 'US',
+        query: cityname,
+        page: '20'
+    }
+
+    cities = meetup_api.cities(p)
+    cities_result = cities['results']
+
+    if cities_result.any?
+      city = cities_result[0]
+    else
+      return search_events
+    end
+
     today = DateTime.now
 
     case period
@@ -104,14 +121,14 @@ class MeetupEventsController < ApplicationController
         fields: 'group_photo,photo_count,photo_sample',
         text_format: 'plain',
         radius: radius,
-        zip: zipcode,
+        zip: city['zip'],
         time: time
     }
 
     fitness_events = meetup_api.open_events(p)
     fitness_event_result = fitness_events['results']
 
-    search_events = []
+    # search_events = []
 
     if fitness_event_result != nil
       fitness_event_result.each do |event|
@@ -149,7 +166,7 @@ class MeetupEventsController < ApplicationController
         fields: 'group_photo,photo_count,photo_sample',
         text_format: 'plain',
         radius: radius,
-        zip: zipcode,
+        zip: city.zip,
         time: time
     }
     outdoor_events = meetup_api.open_events(p)
@@ -190,7 +207,7 @@ class MeetupEventsController < ApplicationController
         fields: 'group_photo,photo_count,photo_sample',
         text_format: 'plain',
         radius: radius,
-        zip: zipcode,
+        zip: city.zip,
         time: time
     }
     sports_events = meetup_api.open_events(p)
