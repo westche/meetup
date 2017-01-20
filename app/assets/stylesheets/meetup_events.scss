@@ -102,7 +102,12 @@
     margin: 10px;
   }
 
-  
+  .event-list-container {
+    background-clip: padding-box;
+    background-color: #f7f7f7;
+    border: 1px solid rgba(0,0,0,.12);
+    border-radius: 10px;
+    padding: 15px;
 
     .created-time {
       text-align: right;
