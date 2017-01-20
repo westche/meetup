@@ -102,13 +102,16 @@
     margin: 10px;
   }
 
-  .event-list-container {
-    background-clip: padding-box;
-    background-color: #f7f7f7;
-    border: 1px solid rgba(0,0,0,.12);
-    border-radius: 10px;
-    padding: 15px;
 
+    .event-list-container {
+      box-shadow: inset 0 0 30px 5px rgb(214, 202, 202);
+      background-clip: padding-box;
+      background-color: #f7f7f7;
+      border: 1px solid rgba(0,0,0,.12);
+      border-radius: 10px;
+      padding: 15px;
+
+}
     .created-time {
       text-align: right;
     }
